@@ -1,4 +1,1 @@
-Imancha-C
-=========
-
-Sistem Informasi Penjualan Tiket Kereta Api
+Copyright 2013 - Imancha
