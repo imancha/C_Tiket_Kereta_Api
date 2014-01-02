@@ -8,6 +8,7 @@
 #include <fstream>
 #include <iomanip>
 #define maxKursi 50
+#define maxKasir 20
 
 using namespace std;
 
@@ -68,12 +69,28 @@ void textcolor(int color){
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color);
 }
 
+//	Konversi integer ke string
+string convertInt(int number){
+	stringstream convert;
+	convert << number;
+	return convert.str();
+}
+
+//	Merubah huruf kecil menjadi huruf besar
+string uppercase(string x){
+	string y;
+	for(int i=0; i<x.length(); i++){
+		y += toupper(x[i]);
+	}
+	return y;
+}
+
 void loading(int panjang){
 	textcolor(rand()%15+1);
-	for(int i=0; i<panjang; i++){
+	for(int i=0; i<panjang+2; i++){
 		gotoxy(((81-panjang)/2)+i,23); cout << char(219);		
 		gotoxy(((81-panjang)/2)+i,24); cout << char(219);
-        Sleep(1);
+        Sleep(10);
     }
     textcolor(7);
 }
@@ -83,6 +100,24 @@ void type(string x){
 		cout << x[i];
 		Sleep(50);
 	}
+}
+
+void kotak(int tinggi, int lebar){
+	textcolor(rand()%6+9);
+	if(tinggi == 1){
+		gotoxy((81-lebar)/2,(24-tinggi)/2);   cout << char(201); for(int i=0; i<lebar; i++){ cout << char(205); } cout << char(187) << endl;
+		gotoxy((81-lebar)/2,(24-tinggi)/2+1); cout << char(186); for(int i=0; i<lebar; i++){ cout << " "; } cout << char(186) << endl;
+		gotoxy((81-lebar)/2,(24-tinggi)/2+tinggi+1); cout << char(200); for(int i=0; i<lebar; i++){ cout << char(205); } cout << char(188) << endl;
+	}else{
+		gotoxy((81-lebar)/2,(24-tinggi)/2);   cout << char(201); for(int i=0; i<lebar; i++){ cout << char(205); } cout << char(187) << endl;
+		gotoxy((81-lebar)/2,(24-tinggi)/2+1); cout << char(186); for(int i=0; i<lebar; i++){ cout << " "; } cout << char(186) << endl;
+		gotoxy((81-lebar)/2,(24-tinggi)/2+2); cout << char(204); for(int i=0; i<lebar; i++){ cout << char(205); } cout << char(185) << endl;
+		for(int j=0; j<tinggi-1; j++){ gotoxy((81-lebar)/2,(24-tinggi)/2+3+j);cout << char(186); for(int i=0; i<lebar; i++){ cout << " "; } cout << char(186) << endl;}
+		gotoxy((81-lebar)/2,(24-tinggi)/2+tinggi-1); cout << char(204); for(int i=0; i<lebar; i++){ cout << char(205); } cout << char(185) << endl;	
+		gotoxy((81-lebar)/2,(24-tinggi)/2+tinggi);   cout << char(186); for(int i=0; i<lebar; i++){ cout << " "; } cout << char(186) << endl;
+		gotoxy((81-lebar)/2,(24-tinggi)/2+tinggi+1); cout << char(200); for(int i=0; i<lebar; i++){ cout << char(205); } cout << char(188) << endl;
+	}
+	textcolor(7);
 }
 
 #include "dataKereta.h"
@@ -95,27 +130,31 @@ int main(int argc, char** argv) {
 	tiket pembeli;
 	queue *node = NULL;
 	
-	loadPembeli(&node,pembeli);
+	loadPembeli(&node,pembeli);	
 	
 	do{
 		do{
-			system("cls");			
-			gotoxy(31,9);  cout << "{ 1 }  Data Kereta";
-			gotoxy(31,10); cout << "{ 2 }  Data Pembeli";
-			gotoxy(31,11); cout << "{ 3 }  Data Pegawai";
-			gotoxy(31,12); cout << "{ 0 }  Keluar";
-			gotoxy(31,14); type("       Pilihan : "); menu = getche();
+			system("cls");	
+			kotak(8,27);		
+			gotoxy(31,9);  cout << "MENU TIKET KERETA API";
+			gotoxy(32,11); cout << "{ 1 }  Data Kereta";
+			gotoxy(32,12); cout << "{ 2 }  Data Pembeli";
+			gotoxy(32,13); cout << "{ 3 }  Data Pegawai";
+			gotoxy(32,14); cout << "{ 0 }  Keluar";
+			gotoxy(32,16); type("    PILIHAN : "); menu = getche();
 		}while(menu > '3');
-		loading(19);
+		loading(27);
 		system("cls");
 		switch (menu){
 			case '1' :	jadwal();
 						break;
 			case '2' :	menuPembeli(&node,pembeli);
 						break;
+			case '3' : 	pegawai();
+						break;
 		}
 	}while(menu != '0');
 	
-	uploadPembeli(node,pembeli);
-	destroy(node);	
+	uploadPembeli(node);
+	destroy(node);
 }

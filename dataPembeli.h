@@ -1,64 +1,29 @@
 //	Blueprint tiket
 void print(queue *node){
 	system("cls");
-	cout << char(218);
-	for(int i=0; i<78; i++) cout << char(196);
-	cout << char(191);
-	cout << char(179) << "  Nama :  " << setiosflags(ios::left) << setw(36) << node->info.pembeli.nama
-		 << "  Kode Tiket :  " << setw(16) << node->info.kode << char(179);
-	cout << char(195);
-	for(int i=0; i<78; i++) cout << char(196);
-	cout << char(180);
-	cout << char(179) << "  Tanggal Berangkat :  " << setw(2) << node->info.pembeli.berangkat.tanggal << " " 
-		 << setw(9) << node->info.pembeli.berangkat.bulan << " " 
-		 << setw(42) << node->info.pembeli.berangkat.tahun << char(179);
-	cout << char(179) << setw(48) << " " << "No. KA :  "
-		 << setw(20) << noKA(node->info.kereta.kode) << char(179);
+	textcolor(15);
+	cout << char(218); for(int i=0; i<78; i++) cout << char(196); cout << char(191);
+	cout << char(179) << "  Nama :  " << setiosflags(ios::left) << setw(36) << node->info.pembeli.nama << "  Kode Tiket :  " << setw(16) << node->info.kode << char(179);
+	cout << char(195); for(int i=0; i<78; i++) cout << char(196); cout << char(180);
+	cout << char(179) << "  Tanggal Berangkat :  " << setw(2) << node->info.pembeli.berangkat.tanggal << " " << setw(9) << node->info.pembeli.berangkat.bulan << " " << setw(42) << node->info.pembeli.berangkat.tahun << char(179);
+	cout << char(179) << setw(48) << " " << "No. KA :  " << setw(20) << noKA(node->info.kereta.kode) << char(179);
 	cout << char(179) << "  Nama KA           :  " << setw(55) << node->info.kereta.nama << char(179);
-	cout << char(195);
-	for(int i=0; i<78; i++) cout << char(196);
-	cout << char(180);
-	cout << char(179) << "  Jadwal Berangkat  :  " << setw(23) << node->info.kereta.berangkat
-		 << "  Jadwal Tiba :  " << setw(15) << node->info.kereta.tiba << char(179);
+	cout << char(195); for(int i=0; i<78; i++) cout << char(196); cout << char(180);
+	cout << char(179) << "  Jadwal Berangkat  :  " << setw(23) << node->info.kereta.berangkat << "  Jadwal Tiba :  " << setw(15) << node->info.kereta.tiba << char(179);
 	cout << char(179) << setw(78) << " " << char(179);
-	cout << char(179) << setiosflags(ios::right) 
-		 << setw(20) << node->info.pembeli.asal
-		 << setw(32) << " " << resetiosflags(ios::right) << setiosflags(ios::left) 
-		 << setw(26) << node->info.pembeli.tujuan << char(179);
-	cout << char(195);
-	for(int i=0; i<78; i++) cout << char(196);
-	cout << char(180);
-	cout << char(179) << setw(24) << "  Kelas :  " << setw(25) << "  No. Gerbong :  " 
-		 << setw(29) << "  Nomor Tempat Duduk :  " << char(179);
+	cout << char(179) << setiosflags(ios::right) << setw(20) << node->info.pembeli.asal << setw(32) << " " << resetiosflags(ios::right) << setiosflags(ios::left) << setw(26) << node->info.pembeli.tujuan << char(179);
+	cout << char(195); for(int i=0; i<78; i++) cout << char(196); cout << char(180);
+	cout << char(179) << setw(24) << "  Kelas :  " << setw(25) << "  No. Gerbong :  " << setw(29) << "  Nomor Tempat Duduk :  " << char(179);
 	cout << char(179) << setw(78) << " " << char(179);
-	cout << char(179) << "     " << setw(26) << node->info.pembeli.kelas 
-		 << setw(26) << node->info.kereta.gerbong
-		 << setw(21) << node->info.kereta.kursi << char(179);
-	cout << char(195);
-	for(int i=0; i<78; i++) cout << char(196);
-	cout << char(180);
-	cout << char(179) << setw(16) << "  Jumlah :  " 
-		 << setw(22) << "  Harga (Rp) : " 
-		 << setw(18) << " Diskon : " 
-		 << setw(22) << " Jumlah (Rp) : " << char(179);
-	cout << char(179) << setiosflags(ios::right) 
-		 << setw(6) << node->info.pembeli.jumlah
-		 << setw(22) << node->info.kereta.harga
-		 << setw(45) << node->info.pembeli.subtotal
-		 << setw(6) << char(179);
-	cout << char(179) << setw(45) << diskon(node->info.pembeli.jumlah)
-		 << setw(28) << node->info.pembeli.diskon
-		 << setw(6) << char(179);
-	cout << char(195);
-	for(int i=0; i<78; i++) cout << char(196);
-	cout << char(180);
-	cout << char(179) << "  Kasir :  " << resetiosflags(ios::right) << setiosflags(ios::left)
-		 << setw(37) << node->info.kasir.nama << "  Total (Rp) :  " << setiosflags(ios::right) 
-		 << setw(9) << node->info.pembeli.total
-		 << setw(6) << char(179);
-	cout << char(192);
-	for(int i=0; i<78; i++) cout << char(196);
-	cout << char(217) << resetiosflags(ios::right);
+	cout << char(179) << "     " << setw(26) << node->info.pembeli.kelas << setw(26) << node->info.kereta.gerbong << setw(21) << node->info.kereta.kursi << char(179);
+	cout << char(195); for(int i=0; i<78; i++) cout << char(196); cout << char(180);
+	cout << char(179) << setw(16) << "  Jumlah :  " << setw(22) << "  Harga (Rp) : " << setw(18) << " Diskon : " << setw(22) << " Jumlah (Rp) : " << char(179);
+	cout << char(179) << setiosflags(ios::right) << setw(6) << node->info.pembeli.jumlah << setw(22) << node->info.kereta.harga << setw(45) << node->info.pembeli.subtotal << setw(6) << char(179);
+	cout << char(179) << setw(45) << diskon(node->info.pembeli.jumlah) << setw(28) << node->info.pembeli.diskon << setw(6) << char(179);
+	cout << char(195); for(int i=0; i<78; i++) cout << char(196); cout << char(180);
+	cout << char(179) << "  Kasir :  " << resetiosflags(ios::right) << setiosflags(ios::left) << setw(37) << node->info.kasir.nama << "  Total (Rp) :  " << setiosflags(ios::right) << setw(9) << node->info.pembeli.total << setw(6) << char(179);
+	cout << char(192);for(int i=0; i<78; i++) cout << char(196); cout << char(217) << resetiosflags(ios::right);
+	textcolor(7);
 }
 
 //	Header tabel
@@ -119,23 +84,7 @@ void footer(){
 	cout << char(217);
 }
 
-//	Konversi integer ke string
-string convertInt(int number){
-	stringstream convert;
-	convert << number;
-	return convert.str();
-}
-
-//	Merubah huruf kecil menjadi huruf besar
-string uppercase(string x){
-	string y;
-	for(int i=0; i<x.length(); i++){
-		y += toupper(x[i]);
-	}
-	return y;
-}
-
-//	Menampilkan nama limit 20 karakter
+//	Menampilkan nama maksimum 20 karakter
 string nama20(string x){
 	if(x.length() > 20){
 		string y;
@@ -178,7 +127,7 @@ string kelas(string x){
 
 //	Fungsi untuk output data pembeli
 void output(tiket data){
-	body();
+//	body();
 	cout << char(179) << " "
 		 << setiosflags(ios::left) 
 		 << setw(5) << data.kode 
@@ -199,7 +148,7 @@ void output(tiket data){
 		 << data.pembeli.jumlah 
 		 << "  " << char(179) << " "
 		 << setw(7) << data.pembeli.total 
-		 << " " << char(179) 
+		 << " " << char(179)
 		 << resetiosflags(ios::right);
 }
 
@@ -240,7 +189,6 @@ string namaBulan(int bulan){
 	}
 }
 
-
 //	Waktu sekarang
 void waktu(){
 	time_t now = time(0);
@@ -267,13 +215,14 @@ void lihat(queue *node){
 	footer();
 }
 
-//	Lihat data pembeli (tabel)
+//	Lihat semua data pembeli (tabel)
 void lihatPembeli(queue *node){	
 	system("cls");
 	if(node != NULL){
 		header();
+		body();
 		deQueue(node);
-		footer();		
+		footer();
 	}else{
 		cout << "Data Kosong";
 	}
@@ -357,40 +306,40 @@ void inputPembeli(queue *node, tiket &data){
 		data.kode = kodeTiket();
 	}while(cekKodeT(node,data.kode));
 
-	cout << "Kode Tiket                     : " << data.kode << endl;
+	cout << "\t Kode Tiket                     :  " << data.kode << endl;
 	
 	do{
-		cout << "Nama                           : "; fflush(stdin); getline(cin,data.pembeli.nama);
+		cout << "\t Nama                           :  "; fflush(stdin); getline(cin,data.pembeli.nama);
 	}while(cekNama(data.pembeli.nama));
 	
 	data.pembeli.nama = uppercase(data.pembeli.nama);
 	
 	do{
-	   printf("Tanggal Berangkat (dd mm yyyy) : "); scanf("%i %i %i",&data.pembeli.berangkat.tanggal,&bulan,&data.pembeli.berangkat.tahun);
+	   printf("\t Tanggal Berangkat (dd mm yyyy) :  "); scanf("%i %i %i",&data.pembeli.berangkat.tanggal,&bulan,&data.pembeli.berangkat.tahun);
 	}while(cekTanggal(data.pembeli.berangkat.tanggal,bulan,data.pembeli.berangkat.tahun));		
 	
 	do{
-		cout << "Kode Stasiun Asal              : "; kodeSA = getche();
+		cout << "\t Kode Stasiun Asal              :  "; kodeSA = getche();
 		putchar('\n');
 	}while((kodeSA < '1') || (kodeSA > '4'));
 
 	do{
-		cout << "Kode Stasiun Tujuan            : "; kodeST = getche();
+		cout << "\t Kode Stasiun Tujuan            :  "; kodeST = getche();
 		putchar('\n');
 	}while((kodeST < '1') || (kodeST > '4') || (kodeSA == kodeST));
 
 	do{
-		cout << "Kode Kelas                     : "; kodeK = getche();
+		cout << "\t Kode Kelas                     :  "; kodeK = getche();
 		putchar('\n');
 	}while((kodeK < '1') || (kodeK > '3'));
 	
 	do{
-		cout << "Kode Waktu Keberangkatan       : "; kodeW = getche();
+		cout << "\t Kode Waktu Keberangkatan       :  "; kodeW = getche();
 		putchar('\n');
 	}while(kodeW < '1' || kodeW > '3');
 
 	do{
-		cout << "Jumlah Tiket                   : "; cin >> data.pembeli.jumlah;
+		cout << "\t Jumlah Tiket                   :  "; cin >> data.pembeli.jumlah;
 	}while(data.pembeli.jumlah < 1 || data.pembeli.jumlah > 5);
 	
 	data.pembeli.berangkat.bulan = namaBulan(bulan);
@@ -437,7 +386,7 @@ void inputPembeli(queue *node, tiket &data){
 	data.pembeli.subtotal = data.pembeli.jumlah * data.kereta.harga;
 	data.pembeli.diskon = diskon(data.pembeli.jumlah,data.pembeli.subtotal);
 	data.pembeli.total = data.pembeli.subtotal - data.pembeli.diskon;
-	data.kasir.nama = namaKasir(rand()%9 + 1);
+	data.kasir.nama = namaKasir(rand()%maxKasir + 1);
 }
 
 //	Fungsi untuk mengecek kode tiket + posisi
@@ -456,7 +405,7 @@ bool cekKode(queue **node, string kode){
 void ubahNama(queue *node){
 	lihat(node);
 	
-	cout << "\n Nama       : "; fflush(stdin); getline(cin,node->info.pembeli.nama);
+	type("\n Nama       : "); fflush(stdin); getline(cin,node->info.pembeli.nama);
 	node->info.pembeli.nama = uppercase(node->info.pembeli.nama);
 	
 	lihat(node);
@@ -471,7 +420,7 @@ void ubahTanggal(queue *node){
 	lihat(node);
 	
 	do{
-		printf("\n Tanggal Berangkat (dd mm yyyy) : "); 
+		type("\n Tanggal Berangkat (dd mm yyyy) : "); 
 		scanf("%i %i %i",&node->info.pembeli.berangkat.tanggal,&bulan,&node->info.pembeli.berangkat.tahun);
 	}while(cekTanggal(node->info.pembeli.berangkat.tanggal,bulan,node->info.pembeli.berangkat.tahun));
 			
@@ -483,49 +432,30 @@ void ubahTanggal(queue *node){
 	getch();
 }
 
-//	Fungsi untuk mendapatkan kode stasiun
-int kodeStasiun(string nama){
-	if(nama == "BANDUNG") return '1';
-	else if(nama == "CIREBON") return '2';
-	else if(nama == "JAKARTA") return '3';
-	else if(nama == "SURABAYA") return '4';
-}
-
-//	Fungsi untuk mendapatkan kode kelas
-int kodeKelas(string nama){
-	if(nama == "EKSEKUTIF") return '1';
-	else if(nama == "BISNIS") return '2';
-	else if(nama == "EKONOMI") return '3';
-}
-
-int kodeWaktu(string nama){
-	if(nama == "PAGI") return '1';
-	else if(nama == "SIANG") return '2';
-	else if(nama == "MALAM") return '3';
-}
-
 //	Ubah data pembeli (Stasiun Asal)
 void ubahAsal(queue *node){
 	int kodeSA, kodeST, kodeK, kodeW;
 	lihat(node);
+	putchar('\n');
+	info();
 	
 	kodeST = kodeStasiun(node->info.pembeli.tujuan);
 	kodeK = kodeKelas(node->info.pembeli.kelas);
 	kodeW = kodeWaktu(node->info.pembeli.waktu);
 			
 	do{
-		cout << "\n Kode Stasiun Asal : "; kodeSA = getche();
+		type("\n\t Kode Stasiun Asal : "); kodeSA = getche();
 	}while((kodeSA < '1') || (kodeSA > '4') || (kodeSA == kodeST));
 	
-	node->info.pembeli.asal = namaStasiun(kodeSA);
-	node->info.kereta.kode = kodeKA(kodeSA);
-	node->info.kereta.nama = namaKA(kodeSA);
-	node->info.kereta.berangkat = jBerangkat(kodeSA,kodeST,kodeW);
-	node->info.kereta.tiba = jTiba(kodeSA,kodeST,kodeW);
-	node->info.kereta.harga = harga(kodeSA,kodeST,kodeK);	
-	node->info.pembeli.subtotal = node->info.pembeli.jumlah * node->info.kereta.harga;
-	node->info.pembeli.diskon = diskon(node->info.pembeli.jumlah,node->info.pembeli.subtotal);
-	node->info.pembeli.total = node->info.pembeli.subtotal - node->info.pembeli.diskon;
+	node->info.pembeli.asal = namaStasiun(kodeSA);											//	kalau stasiun asal dirubah maka,
+	node->info.kereta.kode = kodeKA(kodeSA);													//	kode kereta dirubah
+	node->info.kereta.nama = namaKA(kodeSA);													//	nama kereta dirubah
+	node->info.kereta.berangkat = jBerangkat(kodeSA,kodeST,kodeW);								//	jadwal kereta berangkat diubah
+	node->info.kereta.tiba = jTiba(kodeSA,kodeST,kodeW);										//	jadwal kereta tiba diubah
+	node->info.kereta.harga = harga(kodeSA,kodeST,kodeK);										//	harga tiket kereta diubah
+	node->info.pembeli.subtotal = node->info.pembeli.jumlah * node->info.kereta.harga;			//	subtotal diubah
+	node->info.pembeli.diskon = diskon(node->info.pembeli.jumlah,node->info.pembeli.subtotal);	//	diskon diubah
+	node->info.pembeli.total = node->info.pembeli.subtotal - node->info.pembeli.diskon;			//	total diubah
 	lihat(node);
 	getch();
 	print(node);
@@ -536,13 +466,15 @@ void ubahAsal(queue *node){
 void ubahTujuan(queue *node){
 	int kodeSA, kodeST, kodeK, kodeW;
 	lihat(node);
+	putchar('\n');
+	info();
 	
 	kodeSA = kodeStasiun(node->info.pembeli.asal);
 	kodeK = kodeKelas(node->info.pembeli.kelas);
 	kodeW = kodeWaktu(node->info.pembeli.waktu);
 	
 	do{
-		cout << "\n Kode Stasiun Tujuan : "; kodeST = getche();
+		type("\n\t Kode Stasiun Tujuan : "); kodeST = getche();
 	}while((kodeST < '1') || (kodeST > '4') || (kodeSA == kodeST));
 	
 	node->info.pembeli.tujuan = namaStasiun(kodeST);
@@ -563,17 +495,50 @@ void ubahTujuan(queue *node){
 
 //	Ubah data pembeli (Kelas)
 void ubahKelas(queue *node){
-	int kodeSA, kodeST, kodeK;
+	int kodeSA, kodeST, kodeK, kursi;
 	lihat(node);
+	putchar('\n');
+	info();
 	
 	kodeSA = kodeStasiun(node->info.pembeli.asal);
 	kodeST = kodeStasiun(node->info.pembeli.tujuan);
 	
 	do{
-		cout << "\n Kode Kelas : "; kodeK = getche();
+		type("\n\t Kode Kelas : "); kodeK = getche();
 	}while((kodeK < '1') || (kodeK > '3'));
 	
-	node->info.pembeli.kelas = namaKelas(kodeK);
+	node->info.pembeli.kelas = namaKelas(kodeK);							//	kalau kelas diubah maka,
+	
+	a : 
+		node->info.kereta.gerbong = gerbong(kodeK);								//	nomor gerbong pada tiket diubah
+		b : 
+			kursi = rand()%maxKursi+1;		//	random 1-50
+			node->info.kereta.kursi = "";										//	nomor kursi pada tiket diubah
+			c :				
+				if(kursi+node->info.pembeli.jumlah > maxKursi){
+					goto b;
+				}else{
+					for(int i=0; i<node->info.pembeli.jumlah; i++){
+						string k = convertInt(kursi);
+						if(!cekKursi(node,
+									 node->info.pembeli.asal,
+									 node->info.pembeli.berangkat.tanggal,
+									 node->info.pembeli.berangkat.bulan,
+									 node->info.pembeli.berangkat.tahun,
+									 node->info.pembeli.waktu,
+									 node->info.kereta.gerbong,kursi)){
+							if(i==0){
+								node->info.kereta.kursi = k;
+							}else{
+								node->info.kereta.kursi += "_"+k;
+							}
+							++kursi;
+						}else{
+							goto a;
+						}
+					}					
+				}	
+	
 	node->info.kereta.harga = harga(kodeSA,kodeST,kodeK);
 	node->info.pembeli.subtotal = node->info.pembeli.jumlah * node->info.kereta.harga;
 	node->info.pembeli.diskon = diskon(node->info.pembeli.jumlah,node->info.pembeli.subtotal);
@@ -589,12 +554,14 @@ void ubahKelas(queue *node){
 void ubahWaktu(queue *node){
 	int kodeW, kodeSA, kodeST;
 	lihat(node);
+	putchar('\n');
+	info();
 	
 	kodeSA = kodeStasiun(node->info.pembeli.asal);
 	kodeST = kodeStasiun(node->info.pembeli.tujuan);	
 	
 	do{
-		cout << "\n Kode Waktu Keberangkatan : "; kodeW = getche();
+		type("\n\t Kode Waktu Keberangkatan : "); kodeW = getche();
 	}while((kodeW < '1') || (kodeW > '3'));
 	
 	node->info.pembeli.waktu = namaWaktu(kodeW);
@@ -609,11 +576,44 @@ void ubahWaktu(queue *node){
 
 //	Ubah data pembeli (Jumlah)
 void ubahJumlah(queue *node){
+	int kodeK, kursi;
 	lihat(node);
 	
+	kodeK = kodeKelas(node->info.pembeli.kelas);
+	
 	do{
-		cout << "\n Jumlah Tiket : "; fflush(stdin); cin >> node->info.pembeli.jumlah;
+		type("\n Jumlah Tiket : "); fflush(stdin); cin >> node->info.pembeli.jumlah;
 	}while(node->info.pembeli.jumlah < 1 || node->info.pembeli.jumlah > 5);
+	
+	a : 
+		node->info.kereta.gerbong = gerbong(kodeK);
+		b : 
+			kursi = rand()%maxKursi+1;		//	random 1-50
+			node->info.kereta.kursi = "";
+			c :				
+				if(kursi+node->info.pembeli.jumlah > maxKursi){
+					goto b;
+				}else{
+					for(int i=0; i<node->info.pembeli.jumlah; i++){
+						string k = convertInt(kursi);
+						if(!cekKursi(node,
+									 node->info.pembeli.asal,
+									 node->info.pembeli.berangkat.tanggal,
+									 node->info.pembeli.berangkat.bulan,
+									 node->info.pembeli.berangkat.tahun,
+									 node->info.pembeli.waktu,
+									 node->info.kereta.gerbong,kursi)){
+							if(i==0){
+								node->info.kereta.kursi = k;
+							}else{
+								node->info.kereta.kursi += "_"+k;
+							}
+							++kursi;
+						}else{
+							goto a;
+						}
+					}					
+				}		
 	
 	node->info.pembeli.subtotal = node->info.pembeli.jumlah * node->info.kereta.harga;
 	node->info.pembeli.diskon = diskon(node->info.pembeli.jumlah,node->info.pembeli.subtotal);
@@ -631,7 +631,7 @@ void ubahPembeli(queue *node){
 	
 	if(node != NULL){
 		lihatPembeli(node);
-		cout << "\n Kode Tiket : "; fflush(stdin); getline(cin,kode);
+		type("\n Kode Tiket : "); fflush(stdin); getline(cin,kode);
 		kode = uppercase(kode);
 		
 		if(cekKode(&node,kode) && kode != ""){
@@ -640,17 +640,19 @@ void ubahPembeli(queue *node){
 			do{
 				do{
 					system("cls");
-					gotoxy(27,7);  cout << "{ 1 }  Nama";
-					gotoxy(27,8);  cout << "{ 2 }  Tanggal Berangkat";
-					gotoxy(27,9);  cout << "{ 3 }  Stasiun Asal";
-					gotoxy(27,10); cout << "{ 4 }  Stasiun Tujuan";
-					gotoxy(27,11); cout << "{ 5 }  Kelas";
-					gotoxy(27,12); cout << "{ 6 }  Waktu Keberangkatan";
-					gotoxy(27,13); cout << "{ 7 }  Jumlah";
-					gotoxy(27,14); cout << "{ 0 }  Menu Sebelumnya";
-					gotoxy(27,16); type("       Pilihan : "); menu = getche();
+					kotak(12,37);
+					gotoxy(26,7);  cout << "    MENU UBAH DATA PEMBELI";
+					gotoxy(26,9);  cout << "{ 1 }  Ubah Nama";
+					gotoxy(26,10); cout << "{ 2 }  Ubah Tanggal Berangkat";
+					gotoxy(26,11); cout << "{ 3 }  Ubah Stasiun Asal";
+					gotoxy(26,12); cout << "{ 4 }  Ubah Stasiun Tujuan";
+					gotoxy(26,13); cout << "{ 5 }  Ubah Kelas";
+					gotoxy(26,14); cout << "{ 6 }  Ubah Waktu Keberangkatan";
+					gotoxy(26,15); cout << "{ 7 }  Ubah Jumlah";
+					gotoxy(26,16); cout << "{ 0 }  Menu Sebelumnya";
+					gotoxy(26,18); type("          PILIHAN : "); menu = getche();
 				}while(menu > '7');
-				loading(26);
+				loading(37);
 				system("cls");
 				switch(menu){
 					case '1' : 	ubahNama(node);
@@ -680,15 +682,34 @@ void ubahPembeli(queue *node){
 	}
 }
 
-//	Cari kode tiket
+//	Cari kode tiket (substring applied)
 void cariKode(queue *node){
 	string kode;
-	cout << "Kode Tiket : "; fflush(stdin); getline(cin,kode);
+	int x;
+	kotak(1,24);
+	gotoxy(32,14); textcolor(8); cout << "contoh : ka, ka123"; textcolor(7);
+	gotoxy(32,12); type("Kode Tiket : "); fflush(stdin); getline(cin,kode);
+
+	kode = uppercase(kode);
 	
-	if(cekKode(&node,kode) && kode != ""){
-		lihat(node);
-	}else{
-		cout << "\nData tidak ditemukan.";		
+	system("cls");
+	header();
+	
+	while(node != NULL){
+		if(strstr(node->info.kode.c_str(),kode.c_str()) && kode != ""){			//	c_str() : convert string to char
+			++x;
+			output(node->info);
+			node = node->next;
+		}else{
+			node = node->next;
+		}
+	}
+	
+	footer();
+	
+	if(x == 0){
+		gotoxy(30,4); textcolor(12); type("Data tidak ditemukan...");
+		textcolor(7);
 	}
 	
 	getch();
@@ -698,14 +719,16 @@ void cariKode(queue *node){
 void cariNama(queue *node){
 	string nama;
 	int x;
-	cout << "Nama : "; fflush(stdin); getline(cin,nama);
+	kotak(1,38);
+	gotoxy(25,14); textcolor(8); cout << "contoh : im, imancha"; textcolor(7);
+	gotoxy(25,12); type("Nama : "); fflush(stdin); getline(cin,nama);
 	nama = uppercase(nama);
 	
 	system("cls");
 	header();
 	
 	while(node != NULL){
-		if(strstr(node->info.pembeli.nama.c_str(),nama.c_str()) && nama != ""){
+		if(strstr(node->info.pembeli.nama.c_str(),nama.c_str()) && nama != ""){			//	c_str() : convert string to char
 			++x;
 			output(node->info);
 			node = node->next;
@@ -717,7 +740,7 @@ void cariNama(queue *node){
 	footer();
 	
 	if(x == 0){
-		gotoxy(30,4); textcolor(12); cout << "Data tidak ditemukan";
+		gotoxy(30,4); textcolor(12); type("Data tidak ditemukan...");
 		textcolor(7);
 	}	
 	getch();
@@ -727,14 +750,16 @@ void cariNama(queue *node){
 void cariAsal(queue *node){
 	int x;
 	string nama;	
-	cout << "Nama Stasiun : "; fflush(stdin); getline(cin,nama);
+	kotak(1,29);
+	gotoxy(30,14); textcolor(8); cout << "contoh : ci, cirebon"; textcolor(7);
+	gotoxy(30,12); type("Nama Stasiun : "); fflush(stdin); getline(cin,nama);
 	nama = uppercase(nama);
 	
 	system("cls");
 	header();
 	
 	while(node != NULL){
-		if(strstr(node->info.pembeli.asal.c_str(),nama.c_str()) && nama != ""){
+		if(strstr(node->info.pembeli.asal.c_str(),nama.c_str()) && nama != ""){			//	c_str() : convert string to char
 			++x;
 			output(node->info);
 			node = node->next;
@@ -746,7 +771,7 @@ void cariAsal(queue *node){
 	footer();
 	
 	if(x == 0){
-		gotoxy(30,4); textcolor(12); cout << "Data tidak ditemukan";
+		gotoxy(30,4); textcolor(12); type("Data tidak ditemukan...");
 		textcolor(7);
 	}	
 	getch();	
@@ -755,15 +780,17 @@ void cariAsal(queue *node){
 //	Cari tujuan (substring applied)
 void cariTujuan(queue *node){
 	int x;
-	string nama;	
-	cout << "Nama Stasiun : "; fflush(stdin); getline(cin,nama);
+	string nama;
+	kotak(1,29);
+	gotoxy(30,14); textcolor(8); cout << "contoh : ci, cirebon"; textcolor(7);
+	gotoxy(30,12); type("Nama Stasiun : "); fflush(stdin); getline(cin,nama);
 	nama = uppercase(nama);
 	
 	system("cls");
 	header();
 	
 	while(node != NULL){
-		if(strstr(node->info.pembeli.tujuan.c_str(),nama.c_str()) && nama != ""){
+		if(strstr(node->info.pembeli.tujuan.c_str(),nama.c_str()) && nama != ""){			//	c_str() : convert string to char
 			++x;
 			output(node->info);
 			node = node->next;
@@ -775,7 +802,7 @@ void cariTujuan(queue *node){
 	footer();
 	
 	if(x == 0){
-		gotoxy(30,4); textcolor(12); cout << "Data tidak ditemukan";
+		gotoxy(30,4); textcolor(12); type("Data tidak ditemukan...");
 		textcolor(7);
 	}	
 	getch();	
@@ -784,15 +811,17 @@ void cariTujuan(queue *node){
 //	Cari kelas (substring apllied)
 void cariKelas(queue *node){
 	int x;
-	string nama;	
-	cout << "Nama Kelas : "; fflush(stdin); getline(cin,nama);
+	string nama;
+	kotak(1,28);
+	gotoxy(30,14); textcolor(8); cout << "contoh : bi, bisnis"; textcolor(7);
+	gotoxy(30,12); type("Nama Kelas : "); fflush(stdin); getline(cin,nama);
 	nama = uppercase(nama);
 	
 	system("cls");
 	header();
 	
 	while(node != NULL){
-		if(strstr(node->info.pembeli.kelas.c_str(),nama.c_str()) && nama != ""){
+		if(strstr(node->info.pembeli.kelas.c_str(),nama.c_str()) && nama != ""){			//	c_str() : convert string to char
 			++x;
 			output(node->info);
 			node = node->next;
@@ -804,7 +833,7 @@ void cariKelas(queue *node){
 	footer();
 	
 	if(x == 0){
-		gotoxy(30,4); textcolor(12); cout << "Data tidak ditemukan";
+		gotoxy(30,4); textcolor(12); type("Data tidak ditemukan...");
 		textcolor(7);
 	}	
 	getch();	
@@ -817,15 +846,17 @@ void cariPembeli(queue *node){
 		do{
 			do{
 				system("cls");
-				gotoxy(29,8);  cout << "{ 1 }  Kode Tiket";
-				gotoxy(29,9);  cout << "{ 2 }  Nama";
-				gotoxy(29,10); cout << "{ 3 }  Stasiun Asal";
-				gotoxy(29,11); cout << "{ 4 }  Stasiun Tujuan";
-				gotoxy(29,12); cout << "{ 5 }  Kelas";
-				gotoxy(29,13); cout << "{ 0 }  Menu Sebelumnya";
-				gotoxy(29,15); type("       Pilihan : "); menu = getche();
+				kotak(10,44);
+				gotoxy(22,8);  cout << "   MENU PENCARIAN CARI DATA PEMBELI";
+				gotoxy(22,10); cout << "{ 1 }  Cari Berdasarkan Kode Tiket";
+				gotoxy(22,11); cout << "{ 2 }  Cari Berdasarkan Nama";
+				gotoxy(22,12); cout << "{ 3 }  Cari Berdasarkan Stasiun Asal";
+				gotoxy(22,13); cout << "{ 4 }  Cari Berdasarkan Stasiun Tujuan";
+				gotoxy(22,14); cout << "{ 5 }  Cari Berdasarkan Kelas";
+				gotoxy(22,15); cout << "{ 0 }  Menu Sebelumnya";
+				gotoxy(22,17); type("              PILIHAN : "); menu = getche();
 			}while(menu > '6');
-			loading(23);
+			loading(44);
 			system("cls");
 			switch(menu){
 				case '1' :	cariKode(node);
@@ -841,7 +872,7 @@ void cariPembeli(queue *node){
 			}
 		}while(menu != '0');		
 	}else{
-		gotoxy(35,12); textcolor(12); cout << "Data Kosong";
+		gotoxy(35,12); textcolor(12); type("Data Kosong");
 		textcolor(7);
 		getch();
 	}
@@ -871,17 +902,17 @@ void hapusPembeli(queue **node){
 	
 	if(node != NULL){
 		lihatPembeli(*node);
-		cout << "\n Kode Tiket : "; fflush(stdin); getline(cin,kode);
+		type("\n Kode Tiket : "); fflush(stdin); getline(cin,kode);
 		kode = uppercase(kode);
 		
 		if(cekKodeT(*node,kode)){
 			deleteP(&(*node),kode);	
 			lihatPembeli(*node);			
 		}else{
-			cout << "\n Data tidak ada";
+			type("\n Data tidak ada");
 		}
 	}else{
-		gotoxy(35,12); textcolor(12); cout << "Data Kosong";
+		gotoxy(35,12); textcolor(12); type("Data Kosong");
 		textcolor(7);		
 	}
 
@@ -910,34 +941,34 @@ string Nama(string x){
 
 //	Load data pembeli pada file "dataPembeli.dat"
 void loadPembeli(queue **node, tiket &data){
-	ifstream fin("dataPembeli.dat");
+	ifstream fin("dataPembeli.dat");			//	buka file dataPembeli.dat
 	
 	if(fin){
-		while(!fin.eof()){
-		fin	>> data.kode
-			>> data.pembeli.nama;
-			   data.pembeli.nama = Nama(data.pembeli.nama);
-		fin >> data.pembeli.berangkat.tanggal
-			>> data.pembeli.berangkat.bulan
-			>> data.pembeli.berangkat.tahun
-			>> data.pembeli.asal
-			>> data.pembeli.tujuan
-			>> data.pembeli.kelas
-			>> data.pembeli.waktu
-			>> data.kereta.kode
-			>> data.kereta.nama
-			>> data.kereta.berangkat
-			>> data.kereta.tiba
-			>> data.kereta.gerbong
-			>> data.kereta.kursi
-			>> data.kereta.harga
-			>> data.pembeli.jumlah			
-			>> data.pembeli.subtotal
-			>> data.pembeli.diskon
-			>> data.pembeli.total
-			>> data.kasir.nama;
-			
-			enQueue(&(*node),data);
+		while(!fin.eof()){						//	selama bukan akhir dari file
+		fin	>> data.kode										//	scan 1 kata & masukkan ke variabel data.kode
+			>> data.pembeli.nama;								//	scan 1 kata & masukkan ke variabel data.pembeli.nama
+			   data.pembeli.nama = Nama(data.pembeli.nama);			//	ubah "_" dengan " "
+		fin >> data.pembeli.berangkat.tanggal					//	scan 1 kata & masukkan ke variabel data.pembeli.berangkat.tanggal
+			>> data.pembeli.berangkat.bulan						//	scan 1 kata & masukkan ke variabel data.pembeli.berangkat.bulan
+			>> data.pembeli.berangkat.tahun						//	scan 1 kata & masukkan ke variabel data.pembeli.berangkat.tahun
+			>> data.pembeli.asal								//	scan 1 kata & masukkan ke variabel data.pembeli.asal
+			>> data.pembeli.tujuan								//	scan 1 kata & masukkan ke variabel data.pembeli.tujuan
+			>> data.pembeli.kelas								//	scan 1 kata & masukkan ke variabel data.pembeli.kelas
+			>> data.pembeli.waktu								//	scan 1 kata & masukkan ke variabel data.pembeli.waktu
+			>> data.kereta.kode									//	scan 1 kata & masukkan ke variabel data.kereta.kode
+			>> data.kereta.nama									//	scan 1 kata & masukkan ke variabel data.kereta.nama
+			>> data.kereta.berangkat							//	scan 1 kata & masukkan ke variabel data.kereta.berangkat
+			>> data.kereta.tiba									//	scan 1 kata & masukkan ke variabel data.kereta.tiba
+			>> data.kereta.gerbong								//	scan 1 kata & masukkan ke variabel data.kereta.gerbong
+			>> data.kereta.kursi								//	scan 1 kata & masukkan ke variabel data.kereta.kursi
+			>> data.kereta.harga								//	scan 1 kata & masukkan ke variabel data.kereta.harga
+			>> data.pembeli.jumlah								//	scan 1 kata & masukkan ke variabel data.pembeli.jumlah
+			>> data.pembeli.subtotal							//	scan 1 kata & masukkan ke variabel data.pembeli.subtotal
+			>> data.pembeli.diskon								//	scan 1 kata & masukkan ke variabel data.pembeli.diskon
+			>> data.pembeli.total								//	scan 1 kata & masukkan ke variabel data.pembeli.total
+			>> data.kasir.nama;									//	scan 1 kata & masukkan ke variabel data.kasir.nama
+			   data.kasir.nama = Nama(data.kasir.nama);
+			enQueue(&(*node),data);								//	masukkan semua variabel yang telah discan ke dalam queue
 		}
 	}
 	
@@ -945,46 +976,46 @@ void loadPembeli(queue **node, tiket &data){
 }
 
 // 	Upload data pembeli ke dataPembeli.dat
-void uploadPembeli(queue *node, tiket data){
+void uploadPembeli(queue *node){
 	ofstream fout("dataPembeli.dat",ios::trunc);
 	
 	while(node != NULL){		
-		fout << "\n  "
+		fout << "\n "
 			 << setiosflags(ios::left)
-			 << setw(5) << node->info.kode << "  "
-			 << setw(25) << _Nama(node->info.pembeli.nama) << "  "
+			 << setw(5) << node->info.kode << "   "
+			 << setw(25) << _Nama(node->info.pembeli.nama) << "   "
 			 << setiosflags(ios::right)
 			 << setw(2) << node->info.pembeli.berangkat.tanggal << " "
 			 << resetiosflags(ios::right)
 			 << setiosflags(ios::left)
 			 << setw(9) << node->info.pembeli.berangkat.bulan << " "
-			 << setw(4) << node->info.pembeli.berangkat.tahun << "  "
-			 << setw(8) << node->info.pembeli.asal << "  "
-			 << setw(8) << node->info.pembeli.tujuan << "  "
-			 << setw(9) << node->info.pembeli.kelas << "  "
-			 << setw(5) << node->info.pembeli.waktu << "  "
-			 << setw(6) << node->info.kereta.kode << "  "
-			 << setw(12) << node->info.kereta.nama << "  "
-			 << setw(5) << node->info.kereta.berangkat << "  "
-			 << setw(5) << node->info.kereta.tiba << "  "
-			 << node->info.kereta.gerbong << "  "
-			 << setw(15) << node->info.kereta.kursi << "  "
-			 << setw(6) << node->info.kereta.harga << "  "
-			 << node->info.pembeli.jumlah << "  "			 
+			 << setw(4) << node->info.pembeli.berangkat.tahun << "   "
+			 << setw(8) << node->info.pembeli.asal << "   "
+			 << setw(8) << node->info.pembeli.tujuan << "   "
+			 << setw(9) << node->info.pembeli.kelas << "   "
+			 << setw(5) << node->info.pembeli.waktu << "   "
+			 << setw(6) << node->info.kereta.kode << "   "
+			 << setw(12) << node->info.kereta.nama << "   "
+			 << setw(5) << node->info.kereta.berangkat << "   "
+			 << setw(5) << node->info.kereta.tiba << "   "
+			 << node->info.kereta.gerbong << "   "
+			 << setw(14) << node->info.kereta.kursi << "   "			 	 
 			 << setiosflags(ios::right)			 
-			 << setw(8) << node->info.pembeli.subtotal << "  "
-			 << setw(7) << node->info.pembeli.diskon << "  "
-			 << setw(8) << node->info.pembeli.total << "  "
+			 << setw(6) << node->info.kereta.harga << "   "
+			 << node->info.pembeli.jumlah << "   "		
+			 << setw(8) << node->info.pembeli.subtotal << "   "
+			 << setw(7) << node->info.pembeli.diskon << "   "
+			 << setw(8) << node->info.pembeli.total << "   "
 			 << resetiosflags(ios::right)
 			 << setiosflags(ios::left)
-			 << node->info.kasir.nama;
+			 << _Nama(node->info.kasir.nama);
 		node = node->next;
 	}
 	
 	fout.close();
 }
 
-//	Membebaskan kembali memori
+//	Free memori
 void destroy(queue *node){
 	if(node != NULL){
 		delete node;
@@ -999,15 +1030,17 @@ void menuPembeli(queue **node, tiket data){
 	do{
 		do{
 			system("cls");
-			gotoxy(28,8);  cout << "{ 1 }  Input Data Pembeli";
-			gotoxy(28,9);  cout << "{ 2 }  Ubah  Data Pembeli";
-			gotoxy(28,10); cout << "{ 3 }  Cari  Data Pembeli";
-			gotoxy(28,11); cout << "{ 4 }  Hapus Data Pembeli";
-			gotoxy(28,12); cout << "{ 5 }  Lihat Data Pembeli";
-			gotoxy(28,13); cout << "{ 0 }  Menu Utama";
-			gotoxy(28,15); type("       Pilihan : "); menu = getche();
+			kotak(10,31);
+			gotoxy(29,8);  cout << "    MENU DATA PEMBELI";
+			gotoxy(29,10); cout << "{ 1 }  Input Data Pembeli";
+			gotoxy(29,11); cout << "{ 2 }  Ubah  Data Pembeli";
+			gotoxy(29,12); cout << "{ 3 }  Cari  Data Pembeli";
+			gotoxy(29,13); cout << "{ 4 }  Hapus Data Pembeli";
+			gotoxy(29,14); cout << "{ 5 }  Lihat Data Pembeli";
+			gotoxy(29,15); cout << "{ 0 }  Menu Utama";
+			gotoxy(29,17); type("       PILIHAN : "); menu = getche();
 		}while(menu > '5');
-		loading(25);
+		loading(31);
 		system("cls");
 		switch(menu){								
 			case '1' : 	do{

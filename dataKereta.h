@@ -1,11 +1,28 @@
 void info(){
-	ifstream fin("info.dat");
+	cout << endl; textcolor(rand()%7+9);
+	cout << "       " << char(218); for(int i=0; i<63; i++){ if(i==21 || i==44) cout << char(194); else cout << char(196); } cout << char(191) << endl;
+	cout << "       " << char(179) << "     KODE STASIUN    " << char(179) << "      KODE KELAS      " << char(179) << "    KODE WAKTU    "  << char(179) << endl;
+	cout << "       " << char(195); for(int i=0; i<63; i++){ if(i==21 || i==44) cout << char(197); else cout << char(196); } cout << char(180) << endl;
+	cout << "       " << char(179) << "   ( 1 )  BANDUNG    " << char(179) << "   ( 1 )  EKSEKUTIF   " << char(179) << "   ( 1 )  PAGI    " << char(179) << endl;
+	cout << "       " << char(195); for(int i=0; i<63; i++){ if(i==21 || i==44) cout << char(197); else cout << char(196); } cout << char(180) << endl;
+	cout << "       " << char(179) << "   ( 2 )  CIREBON    " << char(179) << "   ( 2 )  BISNIS      " << char(179) << "   ( 2 )  SIANG   " << char(179) << endl;
+	cout << "       " << char(195); for(int i=0; i<63; i++){ if(i==21 || i==44) cout << char(197); else cout << char(196); } cout << char(180) << endl;
+	cout << "       " << char(179) << "   ( 3 )  JAKARTA    " << char(179) << "   ( 3 )  EKONOMI     " << char(179) << "   ( 3 )  MALAM   " << char(179) << endl;
+	cout << "       " << char(195); for(int i=0; i<63; i++){ if(i==21 || i==44) cout << char(197); else cout << char(196); } cout << char(180) << endl;
+	cout << "       " << char(179) << "   ( 4 )  SURABAYA   " << char(179) << "           -          " << char(179) << "         -        " << char(179) << endl;
+	cout << "       " << char(192); for(int i=0; i<63; i++){ if(i==21 || i==44) cout << char(193); else cout << char(196); } cout << char(217) << endl;
+	cout << endl << endl; textcolor(7);
+}
+
+void jadwal(){
+	ifstream fin("jadwal.dat");
+	
 	string x;
 	while(!fin.eof()){
 		getline(fin,x);
 		cout << x << endl;
 	}
-	putchar('\n');
+	getch();
 }
 
 string diskon(int jumlah){
@@ -23,9 +40,9 @@ string noKA(string nama){
 
 int diskon(int jumlah, int subt){
 	if(jumlah > 3){
-		return 0.1 * subt;
+		return 10 * subt / 100;
 	}else{
-		return 0.0;
+		return 0;
 	}
 }
 
@@ -291,13 +308,25 @@ string namaWaktu(int kode){
 	}
 }
 
-void jadwal(){
-	ifstream fin("jadwal.dat");
-	
-	string x;
-	while(!fin.eof()){
-		getline(fin,x);
-		cout << x << endl;
-	}
-	getch();
+//	Fungsi untuk mendapatkan kode stasiun
+int kodeStasiun(string nama){
+	if(nama == "BANDUNG") return '1';
+	else if(nama == "CIREBON") return '2';
+	else if(nama == "JAKARTA") return '3';
+	else if(nama == "SURABAYA") return '4';
+}
+
+//	Fungsi untuk mendapatkan kode kelas
+int kodeKelas(string nama){
+	if(nama == "EKSEKUTIF") return '1';
+	else if(nama == "BISNIS") return '2';
+	else if(nama == "EKONOMI") return '3';
+}
+
+
+//	Fungsi untuk mendapatkan kode waktu keberangkatan
+int kodeWaktu(string nama){
+	if(nama == "PAGI") return '1';
+	else if(nama == "SIANG") return '2';
+	else if(nama == "MALAM") return '3';
 }
