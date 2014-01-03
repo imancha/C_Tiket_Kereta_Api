@@ -1,3 +1,4 @@
+//	Show info kode input
 void info(){
 	cout << endl; textcolor(rand()%7+9);
 	cout << "       " << char(218); for(int i=0; i<63; i++){ if(i==21 || i==44) cout << char(194); else cout << char(196); } cout << char(191) << endl;
@@ -14,6 +15,7 @@ void info(){
 	cout << endl << endl; textcolor(7);
 }
 
+//	Show jadwal kereta
 void jadwal(){
 	ifstream fin("jadwal.dat");
 	
@@ -25,11 +27,13 @@ void jadwal(){
 	getch();
 }
 
+//	Show diskon
 string diskon(int jumlah){
 	if(jumlah > 3) return "10%";
 	else return "0%";
 }
 
+//	Show 3 huruf terakhir kode kereta
 string noKA(string nama){
 	string x;
 	for(int i=3; i<nama.length(); i++){
@@ -38,6 +42,7 @@ string noKA(string nama){
 	return x;
 }
 
+//	Get diskon
 int diskon(int jumlah, int subt){
 	if(jumlah > 3){
 		return 10 * subt / 100;
@@ -46,6 +51,7 @@ int diskon(int jumlah, int subt){
 	}
 }
 
+//	Get harga tiket
 int harga(int kodeA, int kodeT, int kodeK){
 	switch(kodeA){
 		case '1' : switch(kodeT){
@@ -119,6 +125,7 @@ int harga(int kodeA, int kodeT, int kodeK){
 	}
 }
 
+//	Get kode kereta
 string kodeKA(int kodeA){
 	switch(kodeA){
 		case '1' : return "KA-111"; break;
@@ -128,6 +135,7 @@ string kodeKA(int kodeA){
 	}
 }
 
+//	Get nama kereta
 string namaKA(int kodeA){
 	switch(kodeA){
 		case '1' : return "PARAHYANGAN"; break;
@@ -137,6 +145,7 @@ string namaKA(int kodeA){
 	}
 }
 
+//	Get jadwal berangkat kereta
 string jBerangkat(int kodeA, int kodeT, int kodeW){
 	switch(kodeA){
 		case '1' : switch(kodeT){
@@ -210,6 +219,7 @@ string jBerangkat(int kodeA, int kodeT, int kodeW){
 	}
 }
 
+//	Get jadwal tiba kereta
 string jTiba(int kodeA, int kodeT, int kodeW){
 	switch(kodeA){
 		case '1' : switch(kodeT){
@@ -283,6 +293,7 @@ string jTiba(int kodeA, int kodeT, int kodeW){
 	}
 }
 
+//	Get nama stasiun
 string namaStasiun(int kode){
 	switch(kode){
 		case '1' : return "BANDUNG"; break;
@@ -292,6 +303,7 @@ string namaStasiun(int kode){
 	}		
 }
 
+//	Get nama kelas kereta
 string namaKelas(int kode){
 	switch(kode){
 		case '1' : return "EKSEKUTIF"; break;
@@ -300,6 +312,7 @@ string namaKelas(int kode){
 	}
 }
 
+//	Get waktu keberangkatan
 string namaWaktu(int kode){
 	switch(kode){
 		case '1' : return "PAGI"; break;

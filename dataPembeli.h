@@ -211,6 +211,7 @@ void printTiket(queue *node){
 void lihat(queue *node){
 	system("cls");
 	header();
+	body();
 	output(node->info);
 	footer();
 }
@@ -257,18 +258,69 @@ bool cekKodeT(queue *node, string kode){
 //	Cek nama
 bool cekNama(string nama){
 	if(nama == ""){					// nama kosong
+		gotoxy(47,whereY()-2); textcolor(12); printf("Nama tidak boleh kosong !\n"); textcolor(7);
 		return true;
 	}
 }
 
 //	Fungsi untuk mengecek tanggal berangkat
 bool cekTanggal(int d, int m, int y){
-	if((d < 1) || (d > 30)) return true;			//	tanggal 1-30
-	else if((m < 1) || (m > 12)) return true;		// 	bulan 1-12
-	else if(y < 2013 || y > 2099) return true;		// 	tahun 2013-2099
-	else return false;
+	if((d < 1) || (d > 30)){
+	 	gotoxy(58,whereY()-2); textcolor(12); printf("Tanggal 1-30 !\n"); textcolor(7);
+		return true;			//	tanggal 1-30
+	}
+	if((m < 1) || (m > 12)){
+	 	gotoxy(60,whereY()-2); textcolor(12); printf("Bulan 1-12 !\n"); textcolor(7);
+	 	return true;		// 	bulan 1-12
+	}
+	if(y < 2013 || y > 2099){
+		gotoxy(55,whereY()-2); textcolor(12); printf("Tahun 2013-2099 !\n"); textcolor(7);
+	 	return true;		// 	tahun 2013-2099	 	
+	}
+	return false;
 }
 
+//	Cek kode stasiun asal
+bool cekKodeS(int x){
+	if(x < '1' || x > '4'){
+		gotoxy(62,whereY()-2); textcolor(12); printf("Kode 1-4 !\n"); textcolor(7);
+		return true;
+	}
+	return false;
+}
+
+//	Cek kode stasiun tujuan
+bool cekKodeD(int x, int y){
+	if(x == y){
+		gotoxy(57,whereY()-2); textcolor(12); printf("Asal = Tujuan !\n"); textcolor(7);
+		return true;
+	}
+	if(x < '1' || x > '4'){
+		gotoxy(62,whereY()-2); textcolor(12); printf("Kode 1-4 !\n"); textcolor(7);
+		return true;
+	}
+	return false;
+}
+
+//	Cek kode kelas
+bool cekKodeK(int x){
+	if(x < '1' || x > '3'){
+		gotoxy(62,whereY()-2); textcolor(12); printf("Kode 1-3 !\n"); textcolor(7);
+		return true;
+	}
+	return false;
+}
+
+//	Cek jumlah tiket
+bool cekJumlah(int x){
+	if(x < 1 || x > 5){
+		gotoxy(60,whereY()-2); textcolor(12); printf("Jumlah 1-5 !\n"); textcolor(7);
+		return true;
+	}
+	return false;
+}
+
+//	Get nomor gerbong kereta
 int gerbong(int kodeK){
 	switch(kodeK){
 		case '1' : return (rand()%2+1); break;		// 	random 1-2 (Eks)
@@ -277,6 +329,7 @@ int gerbong(int kodeK){
 	}
 }
 
+//	Get nomor kursi
 bool cekKursi(queue *node, string a, int d, string m, int y, string w, int g, int k){
 	string x = convertInt(k);
 	while(node != NULL){
@@ -306,41 +359,43 @@ void inputPembeli(queue *node, tiket &data){
 		data.kode = kodeTiket();
 	}while(cekKodeT(node,data.kode));
 
-	cout << "\t Kode Tiket                     :  " << data.kode << endl;
+	cout << "\t\b" << char(250) << "Kode Tiket                     :  " << data.kode << endl;
 	
 	do{
-		cout << "\t Nama                           :  "; fflush(stdin); getline(cin,data.pembeli.nama);
+		cout << "\t\b" << char(250) << "Nama                           :  "; fflush(stdin); getline(cin,data.pembeli.nama);
 	}while(cekNama(data.pembeli.nama));
 	
 	data.pembeli.nama = uppercase(data.pembeli.nama);
 	
 	do{
-	   printf("\t Tanggal Berangkat (dd mm yyyy) :  "); scanf("%i %i %i",&data.pembeli.berangkat.tanggal,&bulan,&data.pembeli.berangkat.tahun);
+	   cout << "\t\b" << char(250);
+	   printf("Tanggal Berangkat (dd mm yyyy) :  "); 
+	   scanf("%i %i %i",&data.pembeli.berangkat.tanggal,&bulan,&data.pembeli.berangkat.tahun);
 	}while(cekTanggal(data.pembeli.berangkat.tanggal,bulan,data.pembeli.berangkat.tahun));		
 	
 	do{
-		cout << "\t Kode Stasiun Asal              :  "; kodeSA = getche();
+		cout << "\t\b" << char(250) << "Kode Stasiun Asal              :  "; kodeSA = getche();
 		putchar('\n');
-	}while((kodeSA < '1') || (kodeSA > '4'));
+	}while(cekKodeS(kodeSA));
 
 	do{
-		cout << "\t Kode Stasiun Tujuan            :  "; kodeST = getche();
+		cout << "\t\b" << char(250) << "Kode Stasiun Tujuan            :  "; kodeST = getche();
 		putchar('\n');
-	}while((kodeST < '1') || (kodeST > '4') || (kodeSA == kodeST));
+	}while(cekKodeD(kodeST,kodeSA));
 
 	do{
-		cout << "\t Kode Kelas                     :  "; kodeK = getche();
+		cout << "\t\b" << char(250) << "Kode Kelas                     :  "; kodeK = getche();
 		putchar('\n');
-	}while((kodeK < '1') || (kodeK > '3'));
+	}while(cekKodeK(kodeK));
 	
 	do{
-		cout << "\t Kode Waktu Keberangkatan       :  "; kodeW = getche();
+		cout << "\t\b" << char(250) << "Kode Waktu Keberangkatan       :  "; kodeW = getche();
 		putchar('\n');
-	}while(kodeW < '1' || kodeW > '3');
+	}while(cekKodeK(kodeW));
 
 	do{
-		cout << "\t Jumlah Tiket                   :  "; cin >> data.pembeli.jumlah;
-	}while(data.pembeli.jumlah < 1 || data.pembeli.jumlah > 5);
+		cout << "\t\b" << char(250) << "Jumlah Tiket                   :  "; cin >> data.pembeli.jumlah;
+	}while(cekJumlah(data.pembeli.jumlah));
 	
 	data.pembeli.berangkat.bulan = namaBulan(bulan);
 	data.pembeli.asal = namaStasiun(kodeSA);
@@ -405,13 +460,14 @@ bool cekKode(queue **node, string kode){
 void ubahNama(queue *node){
 	lihat(node);
 	
-	type("\n Nama       : "); fflush(stdin); getline(cin,node->info.pembeli.nama);
+	do{
+		type("\n Nama       : "); fflush(stdin); getline(cin,node->info.pembeli.nama);
+	}while(cekNama(node->info.pembeli.nama));
+		
 	node->info.pembeli.nama = uppercase(node->info.pembeli.nama);
 	
-	lihat(node);
-	getch();
-	print(node);
-	getch();	
+	lihat(node); getch();
+	print(node); getch();	
 }
 
 //	Ubah data pembeli (Tanggal Berangkat)
@@ -426,10 +482,8 @@ void ubahTanggal(queue *node){
 			
 	node->info.pembeli.berangkat.bulan = namaBulan(bulan);
 	
-	lihat(node);
-	getch();
-	print(node);
-	getch();
+	lihat(node); getch();
+	print(node); getch();
 }
 
 //	Ubah data pembeli (Stasiun Asal)
@@ -444,8 +498,9 @@ void ubahAsal(queue *node){
 	kodeW = kodeWaktu(node->info.pembeli.waktu);
 			
 	do{
-		type("\n\t Kode Stasiun Asal : "); kodeSA = getche();
-	}while((kodeSA < '1') || (kodeSA > '4') || (kodeSA == kodeST));
+		type("\t Kode Stasiun Asal : "); kodeSA = getche();
+		putchar('\n');
+	}while(cekKodeD(kodeSA,kodeST));
 	
 	node->info.pembeli.asal = namaStasiun(kodeSA);											//	kalau stasiun asal dirubah maka,
 	node->info.kereta.kode = kodeKA(kodeSA);													//	kode kereta dirubah
@@ -456,10 +511,8 @@ void ubahAsal(queue *node){
 	node->info.pembeli.subtotal = node->info.pembeli.jumlah * node->info.kereta.harga;			//	subtotal diubah
 	node->info.pembeli.diskon = diskon(node->info.pembeli.jumlah,node->info.pembeli.subtotal);	//	diskon diubah
 	node->info.pembeli.total = node->info.pembeli.subtotal - node->info.pembeli.diskon;			//	total diubah
-	lihat(node);
-	getch();
-	print(node);
-	getch();	
+	lihat(node); getch();
+	print(node); getch();	
 }
 
 //	Ubah data pembeli (Stasiun Tujuan)
@@ -474,8 +527,9 @@ void ubahTujuan(queue *node){
 	kodeW = kodeWaktu(node->info.pembeli.waktu);
 	
 	do{
-		type("\n\t Kode Stasiun Tujuan : "); kodeST = getche();
-	}while((kodeST < '1') || (kodeST > '4') || (kodeSA == kodeST));
+		type("\t Kode Stasiun Tujuan : "); kodeST = getche();
+		putchar('\n');
+	}while(cekKodeD(kodeST,kodeSA));
 	
 	node->info.pembeli.tujuan = namaStasiun(kodeST);
 	node->info.kereta.kode = kodeKA(kodeSA);
@@ -487,10 +541,8 @@ void ubahTujuan(queue *node){
 	node->info.pembeli.diskon = diskon(node->info.pembeli.jumlah,node->info.pembeli.subtotal);
 	node->info.pembeli.total = node->info.pembeli.subtotal - node->info.pembeli.diskon;
 	
-	lihat(node);
-	getch();
-	print(node);
-	getch();	
+	lihat(node); getch();
+	print(node); getch();	
 }
 
 //	Ubah data pembeli (Kelas)
@@ -504,8 +556,9 @@ void ubahKelas(queue *node){
 	kodeST = kodeStasiun(node->info.pembeli.tujuan);
 	
 	do{
-		type("\n\t Kode Kelas : "); kodeK = getche();
-	}while((kodeK < '1') || (kodeK > '3'));
+		type("\t Kode Kelas : "); kodeK = getche();
+		putchar('\n');
+	}while(cekKodeK(kodeK));
 	
 	node->info.pembeli.kelas = namaKelas(kodeK);							//	kalau kelas diubah maka,
 	
@@ -544,10 +597,8 @@ void ubahKelas(queue *node){
 	node->info.pembeli.diskon = diskon(node->info.pembeli.jumlah,node->info.pembeli.subtotal);
 	node->info.pembeli.total = node->info.pembeli.subtotal - node->info.pembeli.diskon;	
 	
-	lihat(node);
-	getch();
-	print(node);
-	getch();		
+	lihat(node); getch();
+	print(node); getch();		
 }
 
 //	Ubah data pembeli (Waktu Keberangkatan)
@@ -561,17 +612,16 @@ void ubahWaktu(queue *node){
 	kodeST = kodeStasiun(node->info.pembeli.tujuan);	
 	
 	do{
-		type("\n\t Kode Waktu Keberangkatan : "); kodeW = getche();
-	}while((kodeW < '1') || (kodeW > '3'));
+		type("\t Kode Waktu Keberangkatan : "); kodeW = getche();
+		putchar('\n');
+	}while(cekKodeK(kodeW));
 	
 	node->info.pembeli.waktu = namaWaktu(kodeW);
 	node->info.kereta.berangkat = jBerangkat(kodeSA,kodeST,kodeW);
 	node->info.kereta.tiba = jTiba(kodeSA,kodeST,kodeW);	
 	
-	lihat(node);
-	getch();
-	print(node);
-	getch();
+	lihat(node); getch();
+	print(node); getch();
 }
 
 //	Ubah data pembeli (Jumlah)
@@ -583,7 +633,7 @@ void ubahJumlah(queue *node){
 	
 	do{
 		type("\n Jumlah Tiket : "); fflush(stdin); cin >> node->info.pembeli.jumlah;
-	}while(node->info.pembeli.jumlah < 1 || node->info.pembeli.jumlah > 5);
+	}while(cekJumlah(node->info.pembeli.jumlah));
 	
 	a : 
 		node->info.kereta.gerbong = gerbong(kodeK);
@@ -619,10 +669,8 @@ void ubahJumlah(queue *node){
 	node->info.pembeli.diskon = diskon(node->info.pembeli.jumlah,node->info.pembeli.subtotal);
 	node->info.pembeli.total = node->info.pembeli.subtotal - node->info.pembeli.diskon;	
 	
-	lihat(node);
-	getch();
-	print(node);
-	getch();
+	lihat(node); getch();
+	print(node); getch();
 }
 
 //	Menu ubah data pembeli
@@ -1008,7 +1056,7 @@ void uploadPembeli(queue *node){
 			 << setw(8) << node->info.pembeli.total << "   "
 			 << resetiosflags(ios::right)
 			 << setiosflags(ios::left)
-			 << _Nama(node->info.kasir.nama);
+			 << uppercase(_Nama(node->info.kasir.nama));
 		node = node->next;
 	}
 	
@@ -1053,8 +1101,8 @@ void menuPembeli(queue **node, tiket data){
 							do{
 								putchar('\n');
 								cout << setiosflags(ios::left)
-									 << setw(33) << " ";
-								type (" Input Lagi : "); lagi = getche();
+									 << setw(28) << " ";
+								type (" Input Lagi [Y/T] : "); lagi = getche();
 								lagi = toupper(lagi);
 							}while(!(lagi == 'Y' || lagi == 'T'));
 						}while(lagi == 'Y');

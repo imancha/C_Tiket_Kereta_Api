@@ -1,14 +1,14 @@
 #include <iostream>
 #include <cstdlib>
-#include <conio.h>
+#include <conio.h>		//	Untuk getche(), dll...
 #include <cstring>
-#include <ctime>
-#include <sstream>
-#include <windows.h>
-#include <fstream>
-#include <iomanip>
-#define maxKursi 50
-#define maxKasir 20
+#include <ctime>		//	Untuk random angka, waktu
+#include <sstream>		//	Untuk convert to string
+#include <windows.h>	//	Untuk Sleep, gotoxy, dll...
+#include <fstream>		//	Untuk file
+#include <iomanip>		//	Untuk manipulasi tampilan
+#define maxKursi 50		//	Maksimum nomor kursi
+#define maxKasir 5		//	Maksimum kasir
 
 using namespace std;
 
@@ -69,6 +69,20 @@ void textcolor(int color){
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color);
 }
 
+int whereX(){
+  	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_SCREEN_BUFFER_INFO ccinfo;
+   	GetConsoleScreenBufferInfo(hOut,&ccinfo);
+	return ccinfo.dwCursorPosition.X+1;
+}
+
+int whereY(){
+  	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_SCREEN_BUFFER_INFO ccinfo;
+   	GetConsoleScreenBufferInfo(hOut,&ccinfo);
+	return ccinfo.dwCursorPosition.Y+1;
+}
+
 //	Konversi integer ke string
 string convertInt(int number){
 	stringstream convert;
@@ -85,6 +99,7 @@ string uppercase(string x){
 	return y;
 }
 
+//	Show look like loading
 void loading(int panjang){
 	textcolor(rand()%15+1);
 	for(int i=0; i<panjang+2; i++){
@@ -95,6 +110,7 @@ void loading(int panjang){
     textcolor(7);
 }
 
+//	Show kalimat per karakter
 void type(string x){
 	for(int i=0; i<x.length(); i++){
 		cout << x[i];
@@ -102,6 +118,7 @@ void type(string x){
 	}
 }
 
+//	Show kotak menu
 void kotak(int tinggi, int lebar){
 	textcolor(rand()%6+9);
 	if(tinggi == 1){
