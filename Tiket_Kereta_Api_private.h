@@ -5,19 +5,19 @@
 #define TIKET_KERETA_API_PRIVATE_H
 
 /* VERSION DEFINITIONS */
-#define VER_STRING	"1.1.1.167"
+#define VER_STRING	"1.1.1.168"
 #define VER_MAJOR	1
 #define VER_MINOR	1
 #define VER_RELEASE	1
-#define VER_BUILD	167
+#define VER_BUILD	168
 #define COMPANY_NAME	"Imancha-OS"
-#define FILE_VERSION	"1.1.1.167"
+#define FILE_VERSION	"1.1.1.168"
 #define FILE_DESCRIPTION	"Developed using the Dev-C++ IDE"
 #define INTERNAL_NAME	""
 #define LEGAL_COPYRIGHT	"Imancha"
 #define LEGAL_TRADEMARKS	"Imancha"
 #define ORIGINAL_FILENAME	""
 #define PRODUCT_NAME	"Sistem Informasi Penjualan Tiket Kereta Api"
-#define PRODUCT_VERSION	"1.1.1.167"
+#define PRODUCT_VERSION	"1.1.1.168"
 
 #endif /*TIKET_KERETA_API_PRIVATE_H*/
