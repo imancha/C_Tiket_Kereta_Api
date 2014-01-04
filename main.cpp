@@ -8,7 +8,6 @@
 #include <fstream>		//	Untuk file
 #include <iomanip>		//	Untuk manipulasi tampilan
 #define maxKursi 50		//	Maksimum nomor kursi
-#define maxKasir 5		//	Maksimum kasir
 
 using namespace std;
 
@@ -23,7 +22,9 @@ struct train{
 };
 
 struct employee{
-	int nomor;
+	int id;
+	string username;
+	string password;
 	string nama;
 	string alamat;
 };
@@ -56,6 +57,7 @@ struct tiket{
 
 struct queue{
 	tiket info;
+	employee data;
 	queue *next;
 };
 
@@ -102,7 +104,7 @@ string uppercase(string x){
 //	Show look like loading
 void loading(int panjang){
 	textcolor(rand()%15+1);
-	for(int i=0; i<panjang+2; i++){
+	for(int i=0; i<panjang; i++){
 		gotoxy(((81-panjang)/2)+i,23); cout << char(219);		
 		gotoxy(((81-panjang)/2)+i,24); cout << char(219);
         Sleep(10);
@@ -122,17 +124,17 @@ void type(string x){
 void kotak(int tinggi, int lebar){
 	textcolor(rand()%6+9);
 	if(tinggi == 1){
-		gotoxy((81-lebar)/2,(24-tinggi)/2);   cout << char(201); for(int i=0; i<lebar; i++){ cout << char(205); } cout << char(187) << endl;
-		gotoxy((81-lebar)/2,(24-tinggi)/2+1); cout << char(186); for(int i=0; i<lebar; i++){ cout << " "; } cout << char(186) << endl;
-		gotoxy((81-lebar)/2,(24-tinggi)/2+tinggi+1); cout << char(200); for(int i=0; i<lebar; i++){ cout << char(205); } cout << char(188) << endl;
+		gotoxy((81-lebar)/2,(24-tinggi)/2);   cout << char(201); for(int i=0; i<lebar-2; i++){ cout << char(205); } cout << char(187) << endl;
+		gotoxy((81-lebar)/2,(24-tinggi)/2+1); cout << char(186); for(int i=0; i<lebar-2; i++){ cout << " "; } cout << char(186) << endl;
+		gotoxy((81-lebar)/2,(24-tinggi)/2+tinggi+1); cout << char(200); for(int i=0; i<lebar-2; i++){ cout << char(205); } cout << char(188) << endl;
 	}else{
-		gotoxy((81-lebar)/2,(24-tinggi)/2);   cout << char(201); for(int i=0; i<lebar; i++){ cout << char(205); } cout << char(187) << endl;
-		gotoxy((81-lebar)/2,(24-tinggi)/2+1); cout << char(186); for(int i=0; i<lebar; i++){ cout << " "; } cout << char(186) << endl;
-		gotoxy((81-lebar)/2,(24-tinggi)/2+2); cout << char(204); for(int i=0; i<lebar; i++){ cout << char(205); } cout << char(185) << endl;
-		for(int j=0; j<tinggi-1; j++){ gotoxy((81-lebar)/2,(24-tinggi)/2+3+j);cout << char(186); for(int i=0; i<lebar; i++){ cout << " "; } cout << char(186) << endl;}
-		gotoxy((81-lebar)/2,(24-tinggi)/2+tinggi-1); cout << char(204); for(int i=0; i<lebar; i++){ cout << char(205); } cout << char(185) << endl;	
-		gotoxy((81-lebar)/2,(24-tinggi)/2+tinggi);   cout << char(186); for(int i=0; i<lebar; i++){ cout << " "; } cout << char(186) << endl;
-		gotoxy((81-lebar)/2,(24-tinggi)/2+tinggi+1); cout << char(200); for(int i=0; i<lebar; i++){ cout << char(205); } cout << char(188) << endl;
+		gotoxy((81-lebar)/2,(24-tinggi)/2);   cout << char(201); for(int i=0; i<lebar-2; i++){ cout << char(205); } cout << char(187) << endl;
+		gotoxy((81-lebar)/2,(24-tinggi)/2+1); cout << char(186); for(int i=0; i<lebar-2; i++){ cout << " "; } cout << char(186) << endl;
+		gotoxy((81-lebar)/2,(24-tinggi)/2+2); cout << char(204); for(int i=0; i<lebar-2; i++){ cout << char(205); } cout << char(185) << endl;
+		for(int j=0; j<tinggi-1; j++){ gotoxy((81-lebar)/2,(24-tinggi)/2+3+j);cout << char(186); for(int i=0; i<lebar-2; i++){ cout << " "; } cout << char(186) << endl;}
+		gotoxy((81-lebar)/2,(24-tinggi)/2+tinggi-1); cout << char(204); for(int i=0; i<lebar-2; i++){ cout << char(205); } cout << char(185) << endl;	
+		gotoxy((81-lebar)/2,(24-tinggi)/2+tinggi);   cout << char(186); for(int i=0; i<lebar-2; i++){ cout << " "; } cout << char(186) << endl;
+		gotoxy((81-lebar)/2,(24-tinggi)/2+tinggi+1); cout << char(200); for(int i=0; i<lebar-2; i++){ cout << char(205); } cout << char(188) << endl;
 	}
 	textcolor(7);
 }
@@ -144,34 +146,42 @@ void kotak(int tinggi, int lebar){
 int main(int argc, char** argv) {
 	srand(time(NULL));
 	int menu;
+	string kasir;
 	tiket pembeli;
+	employee pegawai;
+	queue *root = NULL;
 	queue *node = NULL;
 	
-	loadPembeli(&node,pembeli);	
+	loadPegawai(&root,pegawai);
+	loadPembeli(&node,pembeli);
+	
+	loginPegawai(root,kasir);
 	
 	do{
 		do{
-			system("cls");	
-			kotak(8,27);		
-			gotoxy(31,9);  cout << "MENU TIKET KERETA API";
-			gotoxy(32,11); cout << "{ 1 }  Data Kereta";
-			gotoxy(32,12); cout << "{ 2 }  Data Pembeli";
-			gotoxy(32,13); cout << "{ 3 }  Data Pegawai";
-			gotoxy(32,14); cout << "{ 0 }  Keluar";
-			gotoxy(32,16); type("    PILIHAN : "); menu = getche();
+			system("cls");			
+			kotak(8,29);		
+			gotoxy(30,9);  cout << "MENU TIKET KERETA API";
+			gotoxy(31,11); cout << "{ 1 }  Data Kereta";
+			gotoxy(31,12); cout << "{ 2 }  Data Pembeli";
+			gotoxy(31,13); cout << "{ 3 }  Data Pegawai";
+			gotoxy(31,14); cout << "{ 0 }  Keluar";
+			gotoxy(31,16); type("    PILIHAN : "); menu = getche();
 		}while(menu > '3');
-		loading(27);
+		loading(29);
 		system("cls");
 		switch (menu){
-			case '1' :	jadwal();
+			case '1' :	infoKereta();
 						break;
-			case '2' :	menuPembeli(&node,pembeli);
+			case '2' :	menuPembeli(&node,pembeli,kasir);
 						break;
-			case '3' : 	pegawai();
+			case '3' : 	menuPegawai(&root,pegawai);
 						break;
 		}
 	}while(menu != '0');
 	
+	uploadPegawai(root);
 	uploadPembeli(node);
 	destroy(node);
+	destroy(root);
 }

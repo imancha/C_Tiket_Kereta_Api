@@ -16,8 +16,8 @@ void info(){
 }
 
 //	Show jadwal kereta
-void jadwal(){
-	ifstream fin("jadwal.dat");
+void infoKereta(){
+	ifstream fin("dataKereta.dat");
 	
 	string x;
 	while(!fin.eof()){

@@ -33,20 +33,20 @@ UnitCount=4
 
 [VersionInfo]
 Major=1
-Minor=0
-Release=0
-Build=76
+Minor=1
+Release=1
+Build=166
 LanguageID=1033
 CharsetID=1252
 CompanyName=Imancha-OS
-FileVersion=1.0.0.76
+FileVersion=1.1.1.166
 FileDescription=Developed using the Dev-C++ IDE
 InternalName=
 LegalCopyright=Imancha
 LegalTrademarks=Imancha
 OriginalFilename=
 ProductName=Sistem Informasi Penjualan Tiket Kereta Api
-ProductVersion=1.0.0.76
+ProductVersion=1.1.1.166
 AutoIncBuildNr=1
 SyncProduct=1
 

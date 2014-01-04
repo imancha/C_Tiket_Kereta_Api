@@ -1,3 +1,4 @@
+/*	Start of Input Data Pembeli	*/
 //	Blueprint tiket
 void print(queue *node){
 	system("cls");
@@ -21,7 +22,7 @@ void print(queue *node){
 	cout << char(179) << setiosflags(ios::right) << setw(6) << node->info.pembeli.jumlah << setw(22) << node->info.kereta.harga << setw(45) << node->info.pembeli.subtotal << setw(6) << char(179);
 	cout << char(179) << setw(45) << diskon(node->info.pembeli.jumlah) << setw(28) << node->info.pembeli.diskon << setw(6) << char(179);
 	cout << char(195); for(int i=0; i<78; i++) cout << char(196); cout << char(180);
-	cout << char(179) << "  Kasir :  " << resetiosflags(ios::right) << setiosflags(ios::left) << setw(37) << node->info.kasir.nama << "  Total (Rp) :  " << setiosflags(ios::right) << setw(9) << node->info.pembeli.total << setw(6) << char(179);
+	cout << char(179) << "  Kasir :  " << resetiosflags(ios::right) << setiosflags(ios::left) << setw(37) << node->info.kasir.username << "  Total (Rp) :  " << setiosflags(ios::right) << setw(9) << node->info.pembeli.total << setw(6) << char(179);
 	cout << char(192);for(int i=0; i<78; i++) cout << char(196); cout << char(217) << resetiosflags(ios::right);
 	textcolor(7);
 }
@@ -189,15 +190,6 @@ string namaBulan(int bulan){
 	}
 }
 
-//	Waktu sekarang
-void waktu(){
-	time_t now = time(0);
-	char *dt = ctime(&now);	
-	
-	cout << endl << setiosflags(ios::right) << setw(53) << dt << resetiosflags(ios::right);
-	getch();
-}
-
 //	Print tiket
 void printTiket(queue *node){
 	if(node->next == NULL){
@@ -226,7 +218,7 @@ void lihatPembeli(queue *node){
 		footer();
 	}else{
 		cout << "Data Kosong";
-	}
+	}	
 }
 
 //	Fungsi untuk random kode tiket
@@ -349,7 +341,7 @@ bool cekKursi(queue *node, string a, int d, string m, int y, string w, int g, in
 }
 
 //	Input data pembeli
-void inputPembeli(queue *node, tiket &data){	
+void inputPembeli(queue *node, tiket &data, string kasir){	
 	int kodeSA, kodeST, kodeK, kodeW, bulan, kursi;
 	data.pembeli.diskon = 0;
 	data.pembeli.subtotal = 0;
@@ -441,9 +433,11 @@ void inputPembeli(queue *node, tiket &data){
 	data.pembeli.subtotal = data.pembeli.jumlah * data.kereta.harga;
 	data.pembeli.diskon = diskon(data.pembeli.jumlah,data.pembeli.subtotal);
 	data.pembeli.total = data.pembeli.subtotal - data.pembeli.diskon;
-	data.kasir.nama = namaKasir(rand()%maxKasir + 1);
+	data.kasir.username = kasir;
 }
+/*	End of Input Data Pembeli	*/
 
+/*	Start of Ubah Data Pembeli	*/
 //	Fungsi untuk mengecek kode tiket + posisi
 bool cekKode(queue **node, string kode){
 	while(*node != NULL){
@@ -688,19 +682,19 @@ void ubahPembeli(queue *node){
 			do{
 				do{
 					system("cls");
-					kotak(12,37);
-					gotoxy(26,7);  cout << "    MENU UBAH DATA PEMBELI";
-					gotoxy(26,9);  cout << "{ 1 }  Ubah Nama";
-					gotoxy(26,10); cout << "{ 2 }  Ubah Tanggal Berangkat";
-					gotoxy(26,11); cout << "{ 3 }  Ubah Stasiun Asal";
-					gotoxy(26,12); cout << "{ 4 }  Ubah Stasiun Tujuan";
-					gotoxy(26,13); cout << "{ 5 }  Ubah Kelas";
-					gotoxy(26,14); cout << "{ 6 }  Ubah Waktu Keberangkatan";
-					gotoxy(26,15); cout << "{ 7 }  Ubah Jumlah";
-					gotoxy(26,16); cout << "{ 0 }  Menu Sebelumnya";
-					gotoxy(26,18); type("          PILIHAN : "); menu = getche();
+					kotak(12,39);
+					gotoxy(25,7);  cout << "    MENU UBAH DATA PEMBELI";
+					gotoxy(25,9);  cout << "{ 1 }  Ubah Nama";
+					gotoxy(25,10); cout << "{ 2 }  Ubah Tanggal Berangkat";
+					gotoxy(25,11); cout << "{ 3 }  Ubah Stasiun Asal";
+					gotoxy(25,12); cout << "{ 4 }  Ubah Stasiun Tujuan";
+					gotoxy(25,13); cout << "{ 5 }  Ubah Kelas";
+					gotoxy(25,14); cout << "{ 6 }  Ubah Waktu Keberangkatan";
+					gotoxy(25,15); cout << "{ 7 }  Ubah Jumlah";
+					gotoxy(25,16); cout << "{ 0 }  Menu Sebelumnya";
+					gotoxy(25,18); type("          PILIHAN : "); menu = getche();
 				}while(menu > '7');
-				loading(37);
+				loading(39);
 				system("cls");
 				switch(menu){
 					case '1' : 	ubahNama(node);
@@ -729,7 +723,9 @@ void ubahPembeli(queue *node){
 		getch();		
 	}
 }
+/*	End of Ubah Data Pembeli	*/
 
+/*	Start of Cari Data Pembeli	*/
 //	Cari kode tiket (substring applied)
 void cariKode(queue *node){
 	string kode;
@@ -746,6 +742,7 @@ void cariKode(queue *node){
 	while(node != NULL){
 		if(strstr(node->info.kode.c_str(),kode.c_str()) && kode != ""){			//	c_str() : convert string to char
 			++x;
+			body();
 			output(node->info);
 			node = node->next;
 		}else{
@@ -778,6 +775,7 @@ void cariNama(queue *node){
 	while(node != NULL){
 		if(strstr(node->info.pembeli.nama.c_str(),nama.c_str()) && nama != ""){			//	c_str() : convert string to char
 			++x;
+			body();
 			output(node->info);
 			node = node->next;
 		}else{
@@ -809,6 +807,7 @@ void cariAsal(queue *node){
 	while(node != NULL){
 		if(strstr(node->info.pembeli.asal.c_str(),nama.c_str()) && nama != ""){			//	c_str() : convert string to char
 			++x;
+			body();
 			output(node->info);
 			node = node->next;
 		}else{
@@ -840,6 +839,7 @@ void cariTujuan(queue *node){
 	while(node != NULL){
 		if(strstr(node->info.pembeli.tujuan.c_str(),nama.c_str()) && nama != ""){			//	c_str() : convert string to char
 			++x;
+			body();
 			output(node->info);
 			node = node->next;
 		}else{
@@ -871,6 +871,7 @@ void cariKelas(queue *node){
 	while(node != NULL){
 		if(strstr(node->info.pembeli.kelas.c_str(),nama.c_str()) && nama != ""){			//	c_str() : convert string to char
 			++x;
+			body();
 			output(node->info);
 			node = node->next;
 		}else{
@@ -894,17 +895,17 @@ void cariPembeli(queue *node){
 		do{
 			do{
 				system("cls");
-				kotak(10,44);
-				gotoxy(22,8);  cout << "   MENU PENCARIAN CARI DATA PEMBELI";
-				gotoxy(22,10); cout << "{ 1 }  Cari Berdasarkan Kode Tiket";
-				gotoxy(22,11); cout << "{ 2 }  Cari Berdasarkan Nama";
-				gotoxy(22,12); cout << "{ 3 }  Cari Berdasarkan Stasiun Asal";
-				gotoxy(22,13); cout << "{ 4 }  Cari Berdasarkan Stasiun Tujuan";
-				gotoxy(22,14); cout << "{ 5 }  Cari Berdasarkan Kelas";
-				gotoxy(22,15); cout << "{ 0 }  Menu Sebelumnya";
-				gotoxy(22,17); type("              PILIHAN : "); menu = getche();
+				kotak(10,46);
+				gotoxy(21,8);  cout << "     MENU PENCARIAN DATA PEMBELI";
+				gotoxy(21,10); cout << "{ 1 }  Cari Berdasarkan Kode Tiket";
+				gotoxy(21,11); cout << "{ 2 }  Cari Berdasarkan Nama";
+				gotoxy(21,12); cout << "{ 3 }  Cari Berdasarkan Stasiun Asal";
+				gotoxy(21,13); cout << "{ 4 }  Cari Berdasarkan Stasiun Tujuan";
+				gotoxy(21,14); cout << "{ 5 }  Cari Berdasarkan Kelas";
+				gotoxy(21,15); cout << "{ 0 }  Menu Sebelumnya";
+				gotoxy(21,17); type("              PILIHAN : "); menu = getche();
 			}while(menu > '6');
-			loading(44);
+			loading(46);
 			system("cls");
 			switch(menu){
 				case '1' :	cariKode(node);
@@ -925,7 +926,9 @@ void cariPembeli(queue *node){
 		getch();
 	}
 }
+/*	End of Cari Data Pembeli	*/
 
+/*	Start of Hapus Data Pembeli	*/
 //	Fungsi untuk menghapus data pembeli
 void deleteP(queue **node, string kode){
 	queue *hapus;
@@ -966,26 +969,7 @@ void hapusPembeli(queue **node){
 
 	getch();
 }
-
-//	Ubah " " nama dengan "_" supaya bisa di load
-string _Nama(string x){
-	for(int i=0; i<x.length(); i++){
-		if(x[i] == ' '){
-			x[i] = '_';
-		}
-	}
-	return x;
-}
-
-//	Ubah "_" nama dengan " "
-string Nama(string x){
-	for(int i=0; i<x.length(); i++){
-		if(x[i] == '_'){
-			x[i] = ' ';
-		}
-	}
-	return x;
-}
+/*	End of Hapus Data Pembeli	*/
 
 //	Load data pembeli pada file "dataPembeli.dat"
 void loadPembeli(queue **node, tiket &data){
@@ -1014,8 +998,8 @@ void loadPembeli(queue **node, tiket &data){
 			>> data.pembeli.subtotal							//	scan 1 kata & masukkan ke variabel data.pembeli.subtotal
 			>> data.pembeli.diskon								//	scan 1 kata & masukkan ke variabel data.pembeli.diskon
 			>> data.pembeli.total								//	scan 1 kata & masukkan ke variabel data.pembeli.total
-			>> data.kasir.nama;									//	scan 1 kata & masukkan ke variabel data.kasir.nama
-			   data.kasir.nama = Nama(data.kasir.nama);
+			>> data.kasir.username;									//	scan 1 kata & masukkan ke variabel data.kasir.nama
+			   data.kasir.username = Nama(data.kasir.username);
 			enQueue(&(*node),data);								//	masukkan semua variabel yang telah discan ke dalam queue
 		}
 	}
@@ -1056,7 +1040,7 @@ void uploadPembeli(queue *node){
 			 << setw(8) << node->info.pembeli.total << "   "
 			 << resetiosflags(ios::right)
 			 << setiosflags(ios::left)
-			 << uppercase(_Nama(node->info.kasir.nama));
+			 << uppercase(_Nama(node->info.kasir.username));
 		node = node->next;
 	}
 	
@@ -1072,29 +1056,29 @@ void destroy(queue *node){
 }
 
 //	Menu data pembeli
-void menuPembeli(queue **node, tiket data){
+void menuPembeli(queue **node, tiket data, string kasir){
 	int menu;
 	char lagi;
 	do{
 		do{
 			system("cls");
-			kotak(10,31);
-			gotoxy(29,8);  cout << "    MENU DATA PEMBELI";
-			gotoxy(29,10); cout << "{ 1 }  Input Data Pembeli";
-			gotoxy(29,11); cout << "{ 2 }  Ubah  Data Pembeli";
-			gotoxy(29,12); cout << "{ 3 }  Cari  Data Pembeli";
-			gotoxy(29,13); cout << "{ 4 }  Hapus Data Pembeli";
-			gotoxy(29,14); cout << "{ 5 }  Lihat Data Pembeli";
-			gotoxy(29,15); cout << "{ 0 }  Menu Utama";
-			gotoxy(29,17); type("       PILIHAN : "); menu = getche();
+			kotak(10,33);
+			gotoxy(28,8);  cout << "    MENU DATA PEMBELI";
+			gotoxy(28,10); cout << "{ 1 }  Input Data Pembeli";
+			gotoxy(28,11); cout << "{ 2 }  Ubah  Data Pembeli";
+			gotoxy(28,12); cout << "{ 3 }  Cari  Data Pembeli";
+			gotoxy(28,13); cout << "{ 4 }  Hapus Data Pembeli";
+			gotoxy(28,14); cout << "{ 5 }  Lihat Data Pembeli";
+			gotoxy(28,15); cout << "{ 0 }  Menu Utama";
+			gotoxy(28,17); type("       PILIHAN : "); menu = getche();
 		}while(menu > '5');
-		loading(31);
+		loading(33);
 		system("cls");
 		switch(menu){								
 			case '1' : 	do{
 							system("cls");
 							info();
-							inputPembeli(*node,data);
+							inputPembeli(*node,data,kasir);
 							enQueue(&(*node),data);
 							printTiket(*node);
 							putchar('\n');
@@ -1114,7 +1098,8 @@ void menuPembeli(queue **node, tiket data){
 			case '4' :	hapusPembeli(&(*node));
 						break;
 			case '5' : 	lihatPembeli(*node);
-						waktu();
+						waktu(28,whereY());
+						getch();
 						break;			
 		}
 	}while(menu != '0');

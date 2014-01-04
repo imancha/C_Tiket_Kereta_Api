@@ -10,8 +10,8 @@ A ICON "Tiket Kereta Api.ico"
 // TO CHANGE VERSION INFORMATION, EDIT PROJECT OPTIONS...
 //
 1 VERSIONINFO
-FILEVERSION 1,0,0,77
-PRODUCTVERSION 1,0,0,77
+FILEVERSION 1,1,1,167
+PRODUCTVERSION 1,1,1,167
 FILETYPE VFT_APP
 {
   BLOCK "StringFileInfo"
@@ -19,14 +19,14 @@ FILETYPE VFT_APP
     BLOCK "040904E4"
     {
       VALUE "CompanyName", "Imancha-OS"
-      VALUE "FileVersion", "1.0.0.77"
+      VALUE "FileVersion", "1.1.1.167"
       VALUE "FileDescription", "Developed using the Dev-C++ IDE"
       VALUE "InternalName", ""
       VALUE "LegalCopyright", "Imancha"
       VALUE "LegalTrademarks", "Imancha"
       VALUE "OriginalFilename", ""
       VALUE "ProductName", "Sistem Informasi Penjualan Tiket Kereta Api"
-      VALUE "ProductVersion", "1.0.0.77"
+      VALUE "ProductVersion", "1.1.1.167"
     }
   }
   BLOCK "VarFileInfo"
