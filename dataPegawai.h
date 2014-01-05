@@ -6,7 +6,7 @@ string getPass(const char *prompt, bool show_asterisk=true){
   	string password;
   	unsigned char ch=0;
 
-  	cout <<prompt;
+  	cout << prompt;
 
   	DWORD con_mode;
   	DWORD dwRead;
@@ -104,7 +104,7 @@ void outputs(employee info){
 		 << " " << char(179) << " "
 		 << setw(24) << info.nama
 		 << " " << char(179) << " "
-		 << setw(10) << info.alamat
+		 << setw(10) << info.kota
 		 << " " << char(179);
 }
 
@@ -126,7 +126,7 @@ void lihatPegawai(queue *root){
 		gotoxy(10,1); cout << "USERNAME";
 		gotoxy(27,1); cout << "PASSWORD";
 		gotoxy(50,1); cout << "NAMA";
-		gotoxy(70,1); cout << "ALAMAT\n";
+		gotoxy(71,1); cout << "KOTA\n";
 		textcolor(7);		
 		
 		cout << char(195); for(int i=0; i<78; i++){ if(i==4 || i==21 || i==38 || i==65) cout << char(197); else cout << char(196); } cout << char(180);
@@ -194,7 +194,7 @@ void inputPegawai(queue *root, employee &info){
 	}while(cekSpasi(root,info.password));
 	
 	gotoxy(8,whereY()); cout << char(250) << " Nama       : "; fflush(stdin); getline(cin,info.nama);
-	gotoxy(8,whereY()); cout << char(250) << " Alamat     : "; fflush(stdin); getline(cin,info.alamat);	
+	gotoxy(8,whereY()); cout << char(250) << " Kota       : "; fflush(stdin); getline(cin,info.kota);	
 }
 /*	End of Input Data Pegawai	*/
 
@@ -221,7 +221,7 @@ void liat(queue *root){
 	gotoxy(10,1); cout << "USERNAME";
 	gotoxy(27,1); cout << "PASSWORD";
 	gotoxy(50,1); cout << "NAMA";
-	gotoxy(70,1); cout << "ALAMAT\n";
+	gotoxy(71,1); cout << "KOTA\n";
 	textcolor(7);		
 		
 	cout << char(195); for(int i=0; i<78; i++){ if(i==4 || i==21 || i==38 || i==65) cout << char(197); else cout << char(196); } cout << char(180);
@@ -251,10 +251,10 @@ void ubahNamaP(queue *root){
 	getch();
 }
 
-void ubahAlamat(queue *root){
+void ubahKota(queue *root){
 	liat(root);
 	
-	type("\n Alamat : "); fflush(stdin); getline(cin,root->data.alamat);
+	type("\n Kota : "); fflush(stdin); getline(cin,root->data.kota);
 	
 	liat(root);
 	getch();
@@ -267,37 +267,42 @@ void ubahPegawai(queue *root){
 		lihatPegawai(root);
 		type("\n ID Pegawai : "); scanf("%i",&id);
 		
-		if(cekID(&root,id)){
-			system("cls");
-			int menu;
-			do{
-				do{
-					system("cls");
-					kotak(8,30);
-					gotoxy(29,9);  cout << "MENU UBAH DATA PEGAWAI";
-					gotoxy(29,11); cout << "{ 1 }  Ubah Password";
-					gotoxy(29,12); cout << "{ 2 }  Ubah Nama";
-					gotoxy(29,13); cout << "{ 3 }  Ubah Alamat";
-					gotoxy(29,14); cout << "{ 0 }  Menu Sebelumnya";
-					gotoxy(29,16); type("      PILIHAN : "); menu = getche();
-				}while(menu > '3');
-				loading(30);
+		if(id != 1){
+			if(cekID(&root,id)){
 				system("cls");
-				switch(menu){
-					case '1' :	ubahPassword(root);
-								break;
-					case '2' :	ubahNamaP(root);
-								break;
-					case '3' : 	ubahAlamat(root);
-								break;
-				}								
-			}while(menu != '0');				
+				int menu;
+				do{
+					do{
+						system("cls");
+						kotak(8,30);
+						gotoxy(29,9);  cout << "MENU UBAH DATA PEGAWAI";
+						gotoxy(29,11); cout << "{ 1 }  Ubah Password";
+						gotoxy(29,12); cout << "{ 2 }  Ubah Nama";
+						gotoxy(29,13); cout << "{ 3 }  Ubah Kota";
+						gotoxy(29,14); cout << "{ 0 }  Menu Sebelumnya";
+						gotoxy(29,16); type("      PILIHAN : "); menu = getche();
+					}while(menu > '3');
+					loading(30);
+					system("cls");
+					switch(menu){
+						case '1' :	ubahPassword(root);
+									break;
+						case '2' :	ubahNamaP(root);
+									break;
+						case '3' : 	ubahKota(root);
+									break;
+					}								
+				}while(menu != '0');				
+			}else{
+				cout << "\n Data Tidak Ada !";
+				getch();
+			}			
 		}else{
-			cout << "\n Data Tidak Ada";
+			type("\n ID Pegawai 1 tidak boleh dirubah (admin) !");
 			getch();
-		}		
+		}
 	}else{
-		gotoxy(35,12); textcolor(12); cout << "Data Kosong";
+		gotoxy(34,12); textcolor(12); cout << "Data Kosong !";
 		textcolor(7);
 		getch();		
 	}
@@ -322,7 +327,7 @@ void cariUsername(queue *root){
 	gotoxy(10,1); cout << "USERNAME";
 	gotoxy(27,1); cout << "PASSWORD";
 	gotoxy(50,1); cout << "NAMA";
-	gotoxy(70,1); cout << "ALAMAT\n";
+	gotoxy(71,1); cout << "KOTA\n";
 	textcolor(7);
 	
 	while(root != NULL){
@@ -341,7 +346,7 @@ void cariUsername(queue *root){
 	cout << char(192); for(int i=0; i<78; i++){ if(i==4 || i==21 || i==38 || i==65) cout << char(193); else cout << char(196); } cout << char(217);					
 	
 	if(y == 0){
-		gotoxy(30,4); textcolor(12); type("Data tidak ditemukan...");
+		gotoxy(30,4); textcolor(12); type("Data tidak ditemukan...!");
 		textcolor(7);
 	}	
 	getch();		
@@ -363,7 +368,7 @@ void cariNamaP(queue *root){
 	gotoxy(10,1); cout << "USERNAME";
 	gotoxy(27,1); cout << "PASSWORD";
 	gotoxy(50,1); cout << "NAMA";
-	gotoxy(70,1); cout << "ALAMAT\n";
+	gotoxy(71,1); cout << "KOTA\n";
 	textcolor(7);
 	
 	while(root != NULL){
@@ -382,18 +387,18 @@ void cariNamaP(queue *root){
 	cout << char(192); for(int i=0; i<78; i++){ if(i==4 || i==21 || i==38 || i==65) cout << char(193); else cout << char(196); } cout << char(217);					
 	
 	if(y == 0){
-		gotoxy(30,4); textcolor(12); type("Data tidak ditemukan...");
+		gotoxy(30,4); textcolor(12); type("Data tidak ditemukan...!");
 		textcolor(7);
 	}	
 	getch();		
 }
 
-void cariAlamat(queue *root){
+void cariKota(queue *root){
 	int y;
 	string x;
 	kotak(1,33);
 	gotoxy(30,14); textcolor(8); cout << "contoh : im, imancha"; textcolor(7);
-	gotoxy(30,12); type("Alamat  :  "); fflush(stdin); getline(cin,x);
+	gotoxy(30,12); type("Kota  :  "); fflush(stdin); getline(cin,x);
 	
 	system("cls");
 	cout << char(218); for(int i=0; i<78; i++){ if(i==4 || i==21 || i==38 || i==65) cout << char(194); else cout << char(196); } cout << char(191);
@@ -404,11 +409,11 @@ void cariAlamat(queue *root){
 	gotoxy(10,1); cout << "USERNAME";
 	gotoxy(27,1); cout << "PASSWORD";
 	gotoxy(50,1); cout << "NAMA";
-	gotoxy(70,1); cout << "ALAMAT\n";
+	gotoxy(71,1); cout << "KOTA\n";
 	textcolor(7);
 	
 	while(root != NULL){
-		if(strstr(uppercase(root->data.alamat).c_str(),uppercase(x).c_str()) && x != ""){			//	c_str() : convert string to char
+		if(strstr(uppercase(root->data.kota).c_str(),uppercase(x).c_str()) && x != ""){			//	c_str() : convert string to char
 			++y;
 			
 			cout << char(195); for(int i=0; i<78; i++){ if(i==4 || i==21 || i==38 || i==65) cout << char(197); else cout << char(196); } cout << char(180);
@@ -423,7 +428,7 @@ void cariAlamat(queue *root){
 	cout << char(192); for(int i=0; i<78; i++){ if(i==4 || i==21 || i==38 || i==65) cout << char(193); else cout << char(196); } cout << char(217);					
 	
 	if(y == 0){
-		gotoxy(30,4); textcolor(12); type("Data tidak ditemukan...");
+		gotoxy(30,4); textcolor(12); type("Data tidak ditemukan...!");
 		textcolor(7);
 	}	
 	getch();		
@@ -439,7 +444,7 @@ void cariPegawai(queue *root){
 				gotoxy(24,9);  cout << "  MENU PENCARIAN DATA PEGAWAI";
 				gotoxy(24,11); cout << "{ 1 }  Cari Berdasarkan Username";
 				gotoxy(24,12); cout << "{ 2 }  Cari Berdasarkan Nama";
-				gotoxy(24,13); cout << "{ 3 }  Cari Berdasarkan Alamat";				
+				gotoxy(24,13); cout << "{ 3 }  Cari Berdasarkan Kota";				
 				gotoxy(24,14); cout << "{ 0 }  Menu Sebelumnya";
 				gotoxy(24,16); type("           PILIHAN : "); menu = getche();
 			}while(menu > '3');
@@ -450,12 +455,12 @@ void cariPegawai(queue *root){
 							break;
 				case '2' :	cariNamaP(root);
 							break;
-				case '3' :	cariAlamat(root);
+				case '3' :	cariKota(root);
 							break;
 			}
 		}while(menu != '0');		
 	}else{
-		gotoxy(35,12); textcolor(12); type("Data Kosong");
+		gotoxy(34,12); textcolor(12); type("Data Kosong !");
 		textcolor(7);
 		getch();
 	}
@@ -477,11 +482,7 @@ bool cekIDP(queue *root, int kode){
 void deleteE(queue **root, int kode){
 	queue *hapus;
 	if(*root != NULL){
-		if((*root)->data.id == kode){			
-			hapus = *root;
-			*root = hapus->next;
-			hapus = NULL;
-		}else if((*root)->next->data.id == kode){
+		if((*root)->next->data.id == kode){
 			hapus = (*root)->next;
 			(*root)->next = hapus->next;
 			hapus = NULL;		
@@ -498,12 +499,17 @@ void hapusPegawai(queue **root){
 		lihatPegawai(*root);
 		type("\n ID Pegawai  :  "); cin >> x;		
 		
-		if(cekIDP(*root,x)){
-			deleteE(&(*root),x);
-			lihatPegawai(*root);
+		if(x != 1){
+			if(cekIDP(*root,x)){
+				deleteE(&(*root),x);
+				lihatPegawai(*root);
+			}else{
+				type("\n Data tidak ada !");
+			}
 		}else{
-			type("\n Data tidak ada");
+			type("\n ID Pegawai 1 tidak boleh dihapus (admin) !");
 		}
+		
 	}else{
 		gotoxy(35,12); textcolor(12); type("Data Kosong");
 		textcolor(7);		
@@ -556,6 +562,7 @@ void menuPegawai(queue **root, employee info){
 	}while(menu != '0');
 }
 
+/*	Start of File	*/
 //	Ubah " " nama dengan "_" supaya bisa di load
 string _Nama(string x){
 	for(int i=0; i<x.length(); i++){
@@ -586,7 +593,7 @@ void loadPegawai(queue **root, employee &info){
 				>> info.password
 				>> info.nama;
 				   info.nama = Nama(info.nama);
-			fin >> info.alamat;
+			fin >> info.kota;
 			Enqueue(&(*root),info);
 		}
 	}
@@ -599,13 +606,24 @@ void uploadPegawai(queue *root){
 	
 	while(root != NULL){
 		fout << "\n "
-			 << root->data.id << "   "
-			 << root->data.username << "   "
-			 << root->data.password << "   "
-			 << _Nama(root->data.nama) << "   "
-			 << root->data.alamat;
+			 << setiosflags(ios::right)
+			 << setw(2) << root->data.id << "   "
+			 << resetiosflags(ios::right)
+			 << setiosflags(ios::left)
+			 << setw(15) << root->data.username << "   "
+			 << setw(15) << root->data.password << "   "
+			 << setw(25) << _Nama(root->data.nama) << "   "
+			 << _Nama(root->data.kota);
 			 root = root->next;
 	}
 	
 	fout.close();
+}
+/*	End of File	*/
+
+void destroy(queue *node){
+	if(node != NULL){
+		delete node;
+		destroy(node->next);
+	}
 }

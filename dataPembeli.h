@@ -22,7 +22,7 @@ void print(queue *node){
 	cout << char(179) << setiosflags(ios::right) << setw(6) << node->info.pembeli.jumlah << setw(22) << node->info.kereta.harga << setw(45) << node->info.pembeli.subtotal << setw(6) << char(179);
 	cout << char(179) << setw(45) << diskon(node->info.pembeli.jumlah) << setw(28) << node->info.pembeli.diskon << setw(6) << char(179);
 	cout << char(195); for(int i=0; i<78; i++) cout << char(196); cout << char(180);
-	cout << char(179) << "  Kasir :  " << resetiosflags(ios::right) << setiosflags(ios::left) << setw(37) << node->info.kasir.username << "  Total (Rp) :  " << setiosflags(ios::right) << setw(9) << node->info.pembeli.total << setw(6) << char(179);
+	cout << char(179) << "  Kasir :  " << resetiosflags(ios::right) << setiosflags(ios::left) << setw(37) << uppercase(node->info.kasir.username) << "  Total (Rp) :  " << setiosflags(ios::right) << setw(9) << node->info.pembeli.total << setw(6) << char(179);
 	cout << char(192);for(int i=0; i<78; i++) cout << char(196); cout << char(217) << resetiosflags(ios::right);
 	textcolor(7);
 }
@@ -971,6 +971,57 @@ void hapusPembeli(queue **node){
 }
 /*	End of Hapus Data Pembeli	*/
 
+//	Menu data pembeli
+void menuPembeli(queue **node, tiket data, string kasir){
+	int menu;
+	char lagi;
+	do{
+		do{
+			system("cls");
+			kotak(10,33);
+			gotoxy(28,8);  cout << "    MENU DATA PEMBELI";
+			gotoxy(28,10); cout << "{ 1 }  Input Data Pembeli";
+			gotoxy(28,11); cout << "{ 2 }  Ubah  Data Pembeli";
+			gotoxy(28,12); cout << "{ 3 }  Cari  Data Pembeli";
+			gotoxy(28,13); cout << "{ 4 }  Hapus Data Pembeli";
+			gotoxy(28,14); cout << "{ 5 }  Lihat Data Pembeli";
+			gotoxy(28,15); cout << "{ 0 }  Menu Utama";
+			gotoxy(28,17); type("       PILIHAN : "); menu = getche();
+		}while(menu > '5');
+		loading(33);
+		system("cls");
+		switch(menu){								
+			case '1' : 	do{
+							system("cls");
+							info();
+							inputPembeli(*node,data,kasir);
+							enQueue(&(*node),data);
+							printTiket(*node);
+							putchar('\n');
+							do{
+								putchar('\n');
+								cout << setiosflags(ios::left)
+									 << setw(28) << " ";
+								type (" Input Lagi [Y/T] : "); lagi = getche();
+								lagi = toupper(lagi);
+							}while(!(lagi == 'Y' || lagi == 'T'));
+						}while(lagi == 'Y');
+						break;
+			case '2' : 	ubahPembeli(*node);
+						break;
+			case '3' :	cariPembeli(*node);
+						break;
+			case '4' :	hapusPembeli(&(*node));
+						break;
+			case '5' : 	lihatPembeli(*node);
+						waktu(28,whereY());
+						getch();
+						break;			
+		}
+	}while(menu != '0');
+}
+
+/*	Start of File	*/
 //	Load data pembeli pada file "dataPembeli.dat"
 void loadPembeli(queue **node, tiket &data){
 	ifstream fin("dataPembeli.dat");			//	buka file dataPembeli.dat
@@ -1046,61 +1097,4 @@ void uploadPembeli(queue *node){
 	
 	fout.close();
 }
-
-//	Free memori
-void destroy(queue *node){
-	if(node != NULL){
-		delete node;
-		destroy(node->next);
-	}
-}
-
-//	Menu data pembeli
-void menuPembeli(queue **node, tiket data, string kasir){
-	int menu;
-	char lagi;
-	do{
-		do{
-			system("cls");
-			kotak(10,33);
-			gotoxy(28,8);  cout << "    MENU DATA PEMBELI";
-			gotoxy(28,10); cout << "{ 1 }  Input Data Pembeli";
-			gotoxy(28,11); cout << "{ 2 }  Ubah  Data Pembeli";
-			gotoxy(28,12); cout << "{ 3 }  Cari  Data Pembeli";
-			gotoxy(28,13); cout << "{ 4 }  Hapus Data Pembeli";
-			gotoxy(28,14); cout << "{ 5 }  Lihat Data Pembeli";
-			gotoxy(28,15); cout << "{ 0 }  Menu Utama";
-			gotoxy(28,17); type("       PILIHAN : "); menu = getche();
-		}while(menu > '5');
-		loading(33);
-		system("cls");
-		switch(menu){								
-			case '1' : 	do{
-							system("cls");
-							info();
-							inputPembeli(*node,data,kasir);
-							enQueue(&(*node),data);
-							printTiket(*node);
-							putchar('\n');
-							do{
-								putchar('\n');
-								cout << setiosflags(ios::left)
-									 << setw(28) << " ";
-								type (" Input Lagi [Y/T] : "); lagi = getche();
-								lagi = toupper(lagi);
-							}while(!(lagi == 'Y' || lagi == 'T'));
-						}while(lagi == 'Y');
-						break;
-			case '2' : 	ubahPembeli(*node);
-						break;
-			case '3' :	cariPembeli(*node);
-						break;
-			case '4' :	hapusPembeli(&(*node));
-						break;
-			case '5' : 	lihatPembeli(*node);
-						waktu(28,whereY());
-						getch();
-						break;			
-		}
-	}while(menu != '0');
-}
+/*	End of File	*/

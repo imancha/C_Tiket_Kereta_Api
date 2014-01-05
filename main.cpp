@@ -26,7 +26,7 @@ struct employee{
 	string username;
 	string password;
 	string nama;
-	string alamat;
+	string kota;
 };
 
 struct date{
