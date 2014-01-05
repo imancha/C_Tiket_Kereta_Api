@@ -233,10 +233,8 @@ void liat(queue *root){
 
 void ubahPassword(queue *root){
 	liat(root);
-	
-	do{
-		type("\n Password : "); fflush(stdin); getline(cin,root->data.password);
-	}while(cekSpasi(root,root->data.password));	
+		
+	type("\n Password : "); fflush(stdin); getline(cin,root->data.password);	
 	
 	liat(root);
 	getch();
