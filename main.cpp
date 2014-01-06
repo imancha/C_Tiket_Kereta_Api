@@ -71,19 +71,36 @@ void textcolor(int color){
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color);
 }
 
-int whereX(){
+int wherex(){
   	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_SCREEN_BUFFER_INFO ccinfo;
    	GetConsoleScreenBufferInfo(hOut,&ccinfo);
 	return ccinfo.dwCursorPosition.X+1;
 }
 
-int whereY(){
+int wherey(){
   	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_SCREEN_BUFFER_INFO ccinfo;
    	GetConsoleScreenBufferInfo(hOut,&ccinfo);
 	return ccinfo.dwCursorPosition.Y+1;
 }
+
+void SetWindow(int Width, int Height) 
+{ 
+    _COORD coord; 
+    coord.X = Width; 
+    coord.Y = Height; 
+
+    _SMALL_RECT Rect; 
+    Rect.Top = 0; 
+    Rect.Left = 0; 
+    Rect.Bottom = Height - 1; 
+    Rect.Right = Width - 1;
+    
+    HANDLE Handle = GetStdHandle(STD_OUTPUT_HANDLE);      // Get Handle 
+//	SetConsoleScreenBufferSize(Handle, coord);            // Set Buffer Size 
+    SetConsoleWindowInfo(Handle, TRUE, &Rect);            // Set Window Size 
+} 
 
 //	Konversi integer ke string
 string convertInt(int number){
@@ -139,6 +156,7 @@ void kotak(int tinggi, int lebar){
 	textcolor(7);
 }
 
+#include "dataKelompok.h"
 #include "dataKereta.h"
 #include "dataPegawai.h"
 #include "dataPembeli.h"
@@ -151,15 +169,15 @@ int main(int argc, char** argv) {
 	employee pegawai;
 	queue *root = NULL;
 	queue *node = NULL;
-	
-	loadPegawai(&root,pegawai);
-	loadPembeli(&node,pembeli);
-	
+		
+	opening();	
+	loadPegawai(&root,pegawai);		
 	loginPegawai(root,kasir);
+	loadPembeli(&node,pembeli);
 	
 	do{
 		do{
-			system("cls");			
+			system("cls");
 			kotak(8,29);		
 			gotoxy(30,9);  cout << "MENU TIKET KERETA API";
 			gotoxy(31,11); cout << "{ 1 }  Data Kereta";
@@ -184,4 +202,5 @@ int main(int argc, char** argv) {
 	uploadPembeli(node);
 	destroy(node);
 	destroy(root);
+	closing();
 }

@@ -250,7 +250,7 @@ bool cekKodeT(queue *node, string kode){
 //	Cek nama
 bool cekNama(string nama){
 	if(nama == ""){					// nama kosong
-		gotoxy(47,whereY()-2); textcolor(12); printf("Nama tidak boleh kosong !\n"); textcolor(7);
+		gotoxy(47,wherey()-2); textcolor(12); printf("Nama tidak boleh kosong !\n"); textcolor(7);
 		return true;
 	}
 }
@@ -258,15 +258,15 @@ bool cekNama(string nama){
 //	Fungsi untuk mengecek tanggal berangkat
 bool cekTanggal(int d, int m, int y){
 	if((d < 1) || (d > 30)){
-	 	gotoxy(58,whereY()-2); textcolor(12); printf("Tanggal 1-30 !\n"); textcolor(7);
+	 	gotoxy(58,wherey()-2); textcolor(12); printf("Tanggal 1-30 !\n"); textcolor(7);
 		return true;			//	tanggal 1-30
 	}
 	if((m < 1) || (m > 12)){
-	 	gotoxy(60,whereY()-2); textcolor(12); printf("Bulan 1-12 !\n"); textcolor(7);
+	 	gotoxy(60,wherey()-2); textcolor(12); printf("Bulan 1-12 !\n"); textcolor(7);
 	 	return true;		// 	bulan 1-12
 	}
 	if(y < 2013 || y > 2099){
-		gotoxy(55,whereY()-2); textcolor(12); printf("Tahun 2013-2099 !\n"); textcolor(7);
+		gotoxy(55,wherey()-2); textcolor(12); printf("Tahun 2013-2099 !\n"); textcolor(7);
 	 	return true;		// 	tahun 2013-2099	 	
 	}
 	return false;
@@ -275,7 +275,7 @@ bool cekTanggal(int d, int m, int y){
 //	Cek kode stasiun asal
 bool cekKodeS(int x){
 	if(x < '1' || x > '4'){
-		gotoxy(62,whereY()-2); textcolor(12); printf("Kode 1-4 !\n"); textcolor(7);
+		gotoxy(62,wherey()-2); textcolor(12); printf("Kode 1-4 !\n"); textcolor(7);
 		return true;
 	}
 	return false;
@@ -284,11 +284,11 @@ bool cekKodeS(int x){
 //	Cek kode stasiun tujuan
 bool cekKodeD(int x, int y){
 	if(x == y){
-		gotoxy(57,whereY()-2); textcolor(12); printf("Asal = Tujuan !\n"); textcolor(7);
+		gotoxy(57,wherey()-2); textcolor(12); printf("Asal = Tujuan !\n"); textcolor(7);
 		return true;
 	}
 	if(x < '1' || x > '4'){
-		gotoxy(62,whereY()-2); textcolor(12); printf("Kode 1-4 !\n"); textcolor(7);
+		gotoxy(62,wherey()-2); textcolor(12); printf("Kode 1-4 !\n"); textcolor(7);
 		return true;
 	}
 	return false;
@@ -297,7 +297,7 @@ bool cekKodeD(int x, int y){
 //	Cek kode kelas
 bool cekKodeK(int x){
 	if(x < '1' || x > '3'){
-		gotoxy(62,whereY()-2); textcolor(12); printf("Kode 1-3 !\n"); textcolor(7);
+		gotoxy(62,wherey()-2); textcolor(12); printf("Kode 1-3 !\n"); textcolor(7);
 		return true;
 	}
 	return false;
@@ -306,7 +306,7 @@ bool cekKodeK(int x){
 //	Cek jumlah tiket
 bool cekJumlah(int x){
 	if(x < 1 || x > 5){
-		gotoxy(60,whereY()-2); textcolor(12); printf("Jumlah 1-5 !\n"); textcolor(7);
+		gotoxy(60,wherey()-2); textcolor(12); printf("Jumlah 1-5 !\n"); textcolor(7);
 		return true;
 	}
 	return false;
@@ -1014,7 +1014,7 @@ void menuPembeli(queue **node, tiket data, string kasir){
 			case '4' :	hapusPembeli(&(*node));
 						break;
 			case '5' : 	lihatPembeli(*node);
-						waktu(28,whereY());
+						waktu(28,wherey());
 						getch();
 						break;			
 		}

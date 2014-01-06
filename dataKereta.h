@@ -17,6 +17,7 @@ void info(){
 
 //	Show jadwal kereta
 void infoKereta(){
+	SetWindow(80,50);
 	ifstream fin("dataKereta.dat");
 	
 	string x;
@@ -25,6 +26,7 @@ void infoKereta(){
 		cout << x << endl;
 	}
 	getch();
+	SetWindow(80,25);
 }
 
 //	Show diskon

@@ -11,7 +11,7 @@ ResourceIncludes=
 MakeIncludes=
 Compiler=
 CppCompiler=
-Linker=
+Linker="C:/Program Files (x86)/Dev-Cpp/lib/libconio.a"_@@_
 IsCpp=1
 Icon=Tiket Kereta Api.ico
 ExeOutput=
@@ -29,24 +29,24 @@ IncludeVersionInfo=1
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000000
-UnitCount=4
+UnitCount=5
 
 [VersionInfo]
 Major=1
 Minor=1
-Release=1
-Build=193
+Release=3
+Build=399
 LanguageID=1033
 CharsetID=1252
 CompanyName=Imancha-OS
-FileVersion=1.1.1.193
+FileVersion=1.1.3.399
 FileDescription=Developed using the Dev-C++ IDE
 InternalName=Penjualan Tiket Kereta Api
 LegalCopyright=Imancha
 LegalTrademarks=Imancha
 OriginalFilename=Penjualan Tiket Kereta Api
 ProductName=Sistem Informasi Penjualan Tiket Kereta Api
-ProductVersion=1.1.1.193
+ProductVersion=1.1.3.399
 AutoIncBuildNr=1
 SyncProduct=1
 
@@ -82,6 +82,16 @@ BuildCmd=
 
 [Unit4]
 FileName=dataPegawai.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit5]
+FileName=dataKelompok.h
 CompileCpp=1
 Folder=
 Compile=1

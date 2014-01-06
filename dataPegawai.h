@@ -42,14 +42,14 @@ bool cekPass(queue *root, string x, string y){
 			root = root->next;
 		}		
 	}
-	gotoxy(32,15); textcolor(12); cout << "Password Salah !"; textcolor(7); getch();
+	gotoxy(27,15); textcolor(12); cout << "Username / Password Salah !"; textcolor(7); getch();
 	return false;	
 }
 
 void loginPegawai(queue *root, string &kasir){
 	string uname;
 	string pass;
-	int x;
+	int x=0;
 	
 	do{
 		system("cls");
@@ -63,7 +63,8 @@ void loginPegawai(queue *root, string &kasir){
 		++x;
 		
 		if(x > 2){
-			gotoxy(33,15); textcolor(12); cout << "3 kali salah..."; textcolor(0);
+			gotoxy(27,15); textcolor(12); type("3 Kali Salah, Login Gagal..."); textcolor(0);
+			printf("\n\n\n");
 			exit(1);
 			getch();
 		}		
@@ -152,13 +153,13 @@ int idPegawai(queue *root){
 
 bool cekSpasi(queue *root, string x){
 	if(x == ""){
-		gotoxy(52,whereY()-2); textcolor(12); cout << "Tidak boleh kosong !\n"; textcolor(7);
+		gotoxy(52,wherey()-2); textcolor(12); cout << "Tidak boleh kosong !\n"; textcolor(7);
 		return true;
 	}
 	
 	for(int i=0; i<x.length(); i++){
 		if(x[i] == ' '){
-			gotoxy(42,whereY()-2); textcolor(12); cout << "Tidak boleh mengandung spasi !\n"; textcolor(7);
+			gotoxy(42,wherey()-2); textcolor(12); cout << "Tidak boleh mengandung spasi !\n"; textcolor(7);
 			return true;
 			break;
 		}
@@ -166,7 +167,7 @@ bool cekSpasi(queue *root, string x){
 	
 	while(root != NULL){
 		if(root->data.username == x){
-			gotoxy(46,whereY()-2); textcolor(12); cout << "Username telah digunakan !\n"; textcolor(7);
+			gotoxy(46,wherey()-2); textcolor(12); cout << "Username telah digunakan !\n"; textcolor(7);
 			return true;
 			break;
 		}else{
@@ -186,15 +187,15 @@ void inputPegawai(queue *root, employee &info){
 	gotoxy(8,6); cout << char(250) << " ID Pegawai : " << info.id << endl;	
 	
 	do{
-		gotoxy(8,whereY()); cout << char(250) << " Username   : "; fflush(stdin); getline(cin,info.username);
+		gotoxy(8,wherey()); cout << char(250) << " Username   : "; fflush(stdin); getline(cin,info.username);
 	}while(cekSpasi(root,info.username));
 	
 	do{
-		gotoxy(8,whereY()); cout << char(250) << " Password   : "; fflush(stdin); getline(cin,info.password);
+		gotoxy(8,wherey()); cout << char(250) << " Password   : "; fflush(stdin); getline(cin,info.password);
 	}while(cekSpasi(root,info.password));
 	
-	gotoxy(8,whereY()); cout << char(250) << " Nama       : "; fflush(stdin); getline(cin,info.nama);
-	gotoxy(8,whereY()); cout << char(250) << " Kota       : "; fflush(stdin); getline(cin,info.kota);	
+	gotoxy(8,wherey()); cout << char(250) << " Nama       : "; fflush(stdin); getline(cin,info.nama);
+	gotoxy(8,wherey()); cout << char(250) << " Kota       : "; fflush(stdin); getline(cin,info.kota);	
 }
 /*	End of Input Data Pegawai	*/
 
@@ -553,7 +554,7 @@ void menuPegawai(queue **root, employee info){
 			case '4' :	hapusPegawai(&(*root));
 						break;
 			case '5' : 	lihatPegawai(*root);
-						waktu(28,whereY());
+						waktu(28,wherey());
 						getch();
 						break;			
 		}
