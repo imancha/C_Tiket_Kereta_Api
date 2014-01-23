@@ -156,10 +156,10 @@ void kotak(int tinggi, int lebar){
 	textcolor(7);
 }
 
-#include "dataKelompok.h"
 #include "dataKereta.h"
 #include "dataPegawai.h"
 #include "dataPembeli.h"
+#include "dataPribadi.h" 
 
 int main(int argc, char** argv) {
 	srand(time(NULL));
@@ -169,16 +169,22 @@ int main(int argc, char** argv) {
 	employee pegawai;
 	queue *root = NULL;
 	queue *node = NULL;
-		
-	opening();	
-	loadPegawai(&root,pegawai);		
+
+	/*	opening matrix	*/
+	opening();
+	/*	load data pegawai from file 'dataPegawai.dat'	*/
+	loadPegawai(&root,pegawai);
+	/*	login pegawai as kasir	*/
 	loginPegawai(root,kasir);
+	/*	load data pembeli from file 'dataPembeli.dat	*/
 	loadPembeli(&node,pembeli);
 	
 	do{
 		do{
 			system("cls");
-			kotak(8,29);		
+			/*	create box for main menu	*/
+			kotak(8,29);
+			/*	main menu	*/
 			gotoxy(30,9);  cout << "MENU TIKET KERETA API";
 			gotoxy(31,11); cout << "{ 1 }  Data Kereta";
 			gotoxy(31,12); cout << "{ 2 }  Data Pembeli";
@@ -186,6 +192,7 @@ int main(int argc, char** argv) {
 			gotoxy(31,14); cout << "{ 0 }  Keluar";
 			gotoxy(31,16); type("    PILIHAN : "); menu = getche();
 		}while(menu > '3');
+		/*	show looklike loading	*/
 		loading(29);
 		system("cls");
 		switch (menu){
@@ -198,9 +205,12 @@ int main(int argc, char** argv) {
 		}
 	}while(menu != '0');
 	
+	/*	upload data pegawai to file 'dataPegawai.dat'	*/
 	uploadPegawai(root);
+	/*	upload data pembeli to file	'dataPembeli.dat'	*/
 	uploadPembeli(node);
+	/*	free memori	*/
 	destroy(node);
-	destroy(root);
+	destroy(root);	
 	closing();
 }
